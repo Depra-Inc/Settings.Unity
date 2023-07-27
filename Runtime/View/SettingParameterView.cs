@@ -1,4 +1,7 @@
-﻿using Depra.Settings.Unity.Runtime.Parameters.Base;
+﻿// Copyright © 2023 Nikolay Melnikov. All rights reserved.
+// SPDX-License-Identifier: Apache-2.0
+
+using Depra.Settings.Unity.Runtime.Parameters.Base;
 using UnityEngine;
 
 namespace Depra.Settings.Unity.Runtime.View

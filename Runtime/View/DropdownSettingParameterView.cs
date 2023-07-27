@@ -1,4 +1,7 @@
-﻿using TMPro;
+﻿// Copyright © 2023 Nikolay Melnikov. All rights reserved.
+// SPDX-License-Identifier: Apache-2.0
+
+using TMPro;
 using UnityEngine;
 using static Depra.Settings.Unity.Runtime.Common.Constants;
 

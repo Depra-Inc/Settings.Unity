@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright © 2023 Nikolay Melnikov. All rights reserved.
+// SPDX-License-Identifier: Apache-2.0
+
+using System;
 using System.Runtime.CompilerServices;
 using Depra.Settings.Unity.Runtime.Delegates;
 using Depra.Settings.Unity.Runtime.Save;
@@ -6,7 +9,7 @@ using UnityEngine;
 
 namespace Depra.Settings.Unity.Runtime.Parameters.Base
 {
-	public abstract class SettingsParameter<TValue> : SettingsParameter, ISettingParameter<TValue>
+	public abstract class SettingsParameter<TValue> : SettingsParameter
 	{
 		[SerializeField] private string _key;
 		[SerializeField] private TValue _defaultValue;

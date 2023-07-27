@@ -1,5 +1,7 @@
-﻿using Depra.Settings.Unity.Runtime.Parameters.Base;
-using Depra.Settings.Unity.Runtime.Save;
+﻿// Copyright © 2023 Nikolay Melnikov. All rights reserved.
+// SPDX-License-Identifier: Apache-2.0
+
+using Depra.Settings.Unity.Runtime.Parameters.Base;
 
 namespace Depra.Settings.Unity.Runtime.Parameters.Control
 {
@@ -12,10 +14,10 @@ namespace Depra.Settings.Unity.Runtime.Parameters.Control
         {
             
         }
-    }
-
-    public interface ISensitivityUser
-    {
-        float Sensitivity { get; set; }
+        
+        public interface ISensitivityUser
+        {
+            float Sensitivity { get; set; }
+        }
     }
 }

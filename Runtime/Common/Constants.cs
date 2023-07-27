@@ -1,3 +1,6 @@
+// Copyright © 2023 Nikolay Melnikov. All rights reserved.
+// SPDX-License-Identifier: Apache-2.0
+
 namespace Depra.Settings.Unity.Runtime.Common
 {
     internal static class Constants
