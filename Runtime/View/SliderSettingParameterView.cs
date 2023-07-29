@@ -3,7 +3,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
-using static Depra.Settings.Unity.Runtime.Common.Constants;
+using static Depra.Settings.Unity.Runtime.Common.Module;
 
 namespace Depra.Settings.Unity.Runtime.View
 {
@@ -11,26 +11,26 @@ namespace Depra.Settings.Unity.Runtime.View
 	public sealed class SliderSettingParameterView : SettingParameterView<float>
 	{
 		private const string FILE_NAME = nameof(SliderSettingParameterView);
-		private const string MENU_NAME = MODULE_PATH + "/" + nameof(View) + "/" + FILE_NAME;
+		private const string MENU_NAME = MODULE_PATH + SEPARATOR + nameof(View) + SEPARATOR + FILE_NAME;
 
 		[SerializeField] private Slider _slider;
-		
+
 		private void OnEnable()
 		{
 			UpdateSlider(Parameter.CurrentValue);
-			
+
 			Parameter.ValueChanged += UpdateSlider;
-			_slider.onValueChanged.AddListener(OnSettingValueChanged);
+			_slider.onValueChanged.AddListener(ApplyParameter);
 		}
 
 		private void OnDisable()
 		{
 			Parameter.ValueChanged -= UpdateSlider;
-			_slider.onValueChanged.RemoveListener(OnSettingValueChanged);
+			_slider.onValueChanged.RemoveListener(ApplyParameter);
 		}
 
-		private void UpdateSlider(float value) => _slider.SetValueWithoutNotify(value);
+		private void ApplyParameter(float value) => Parameter.Apply(value);
 
-		private void OnSettingValueChanged(float value) => Parameter.Apply(value);
+		private void UpdateSlider(float value) => _slider.SetValueWithoutNotify(value);
 	}
 }

@@ -7,19 +7,19 @@ namespace Depra.Settings.Unity.Runtime.Parameters.Base
 {
     public abstract class ArraySettingParameter<TValue> : SettingsParameter<int>
     {
-        public TValue this[int index] => Array[index];
+        public TValue this[int index] => All[index];
 
         public override int CurrentValue =>
-            System.Array.IndexOf(Array, Current);
+            System.Array.IndexOf(All, Current);
 
-        public ReadOnlyCollection<TValue> Collection =>
-            System.Array.AsReadOnly(Array);
+        public ReadOnlyCollection<TValue> AllValues =>
+            System.Array.AsReadOnly(All);
 
-        protected abstract TValue[] Array { get; }
+        protected abstract TValue[] All { get; }
 
         protected abstract TValue Current { get; set; }
 
         protected override void OnApply(int index) =>
-            Current = Array[index];
+            Current = All[index];
     }
 }

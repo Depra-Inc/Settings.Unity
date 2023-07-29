@@ -1,30 +1,57 @@
 // Copyright © 2023 Nikolay Melnikov. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+using System;
 using Depra.Settings.Unity.Runtime.Parameters.Base;
 using UnityEngine;
-using static Depra.Settings.Unity.Runtime.Common.Constants;
+using static Depra.Settings.Unity.Runtime.Common.Module;
 
 namespace Depra.Settings.Unity.Runtime.Parameters.Screen
 {
-    [CreateAssetMenu(fileName = FILE_NAME, menuName = MENU_NAME, order = 51)]
-    internal sealed class ResolutionSetting : SettingsParameter<Resolution>
-    {
-        private const string FILE_NAME = nameof(ResolutionSetting);
-        private const string MENU_NAME = MODULE_PATH + "/" + nameof(Screen) + "/" + FILE_NAME;
+	[CreateAssetMenu(fileName = FILE_NAME, menuName = MENU_NAME, order = DEFAULT_ORDER)]
+	public sealed class ResolutionSetting : SettingsParameter<ResolutionSetting.SerializableResolution>
+	{
+		private const string FILE_NAME = nameof(ResolutionSetting);
+		private const string MENU_NAME = MODULE_PATH + SEPARATOR + nameof(Screen) + SEPARATOR + FILE_NAME;
 
-        [SerializeField] private Resolution[] _resolutions;
-        
-        public override string Name => nameof(Resolution);
+		public override SerializableResolution CurrentValue =>
+			UnityEngine.Screen.currentResolution;
 
-        public override Resolution CurrentValue => 
-            UnityEngine.Screen.currentResolution;
+		protected override void OnApply(SerializableResolution resolution) =>
+			UnityEngine.Screen.SetResolution(resolution.Width, resolution.Height,
+				UnityEngine.Screen.fullScreenMode, resolution.RefreshRate);
 
-        protected override void OnReload() =>
-            OnApply(DefaultValue);
+		[Serializable]
+		public struct SerializableResolution
+		{
+			public static implicit operator SerializableResolution(Resolution self) =>
+				new(self.width, self.height, self.refreshRateRatio);
 
-        protected override void OnApply(Resolution resolution) =>
-            UnityEngine.Screen.SetResolution(resolution.width, resolution.height,
-                UnityEngine.Screen.fullScreenMode, resolution.refreshRateRatio);
-    }
+			public static implicit operator Resolution(SerializableResolution self) => new()
+			{
+				width = self.Width,
+				height = self.Height,
+				refreshRateRatio = self.RefreshRate
+			};
+			
+			/// <inheritdoc cref="Resolution.width"/>
+			[field: SerializeField] public int Width { get; private set; }
+
+			/// <inheritdoc cref="Resolution.height"/>
+			[field: SerializeField] public int Height { get; private set; }
+
+			/// <inheritdoc cref="Resolution.refreshRateRatio"/>
+			public RefreshRate RefreshRate;
+			
+			public SerializableResolution(int width, int height, RefreshRate refreshRate)
+			{
+				Width = width;
+				Height = height;
+				RefreshRate = refreshRate;
+			}
+
+			/// <inheritdoc cref="Resolution.ToString"/>
+			public override string ToString() => $"{Width} x {Height} @ {RefreshRate}Hz";
+		}
+	}
 }

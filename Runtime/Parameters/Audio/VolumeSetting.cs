@@ -4,7 +4,7 @@
 using Depra.Settings.Unity.Runtime.Parameters.Base;
 using UnityEngine;
 using UnityEngine.Audio;
-using static Depra.Settings.Unity.Runtime.Common.Constants;
+using static Depra.Settings.Unity.Runtime.Common.Module;
 
 namespace Depra.Settings.Unity.Runtime.Parameters.Audio
 {
@@ -12,22 +12,16 @@ namespace Depra.Settings.Unity.Runtime.Parameters.Audio
 	public sealed class VolumeSetting : SettingsParameter<float>
 	{
 		private const string FILE_NAME = nameof(VolumeSetting);
-		private const string MENU_NAME = MODULE_PATH + "/" + nameof(Audio) + "/" + FILE_NAME;
-
+		private const string MENU_NAME = MODULE_PATH + SEPARATOR + nameof(Audio) + SEPARATOR + FILE_NAME;
+		
 		[SerializeField] private AudioMixer _audioMixer;
 		[SerializeField] private string _exposedParameter;
 
-		public override string Name =>
-			$"Audio {(_audioMixer ? $"{_audioMixer.name} {_exposedParameter}" : "Unassigned")}";
+		public override float CurrentValue =>
+			_audioMixer.GetRequiredFloat(_exposedParameter);
 
-		public override float CurrentValue
-		{
-			get
-			{
-				_audioMixer.GetFloat(_exposedParameter, out var volume);
-				return volume;
-			}
-		}
+		protected override string DefaultName =>
+			$"Audio {(_audioMixer ? $"{_audioMixer.name} {_exposedParameter}" : "Unassigned")}";
 
 		protected override void OnReload() =>
 			_audioMixer.ClearFloat(_exposedParameter);
