@@ -1,19 +1,25 @@
-﻿using Depra.Settings.Unity.Runtime.Parameters.Base;
+﻿// Copyright © 2023 Nikolay Melnikov. All rights reserved.
+// SPDX-License-Identifier: Apache-2.0
+
+using Depra.Settings.Runtime.Parameters.Base;
 using TMPro;
 using UnityEngine;
-using static Depra.Settings.Unity.Runtime.Common.Module;
+using static Depra.Settings.Runtime.Common.Module;
 
-namespace Depra.Settings.Unity.Runtime.View
+namespace Depra.Settings.Runtime.View
 {
-	[AddComponentMenu(menuName: MENU_NAME, order: DEFAULT_ORDER)]
-	public sealed class SettingNameLabel : MonoBehaviour
+	public sealed partial class SettingNameLabel : MonoBehaviour
 	{
-		private const string FILE_NAME = "Setting Name Label";
-		private const string MENU_NAME = MODULE_PATH + SEPARATOR + nameof(View) + SEPARATOR + FILE_NAME;
-
 		[SerializeField] private TMP_Text _displayName;
 		[SerializeField] private SettingsParameter _parameter;
 
 		private void Start() => _displayName.text = _parameter.DisplayName;
+	}
+
+	[AddComponentMenu(menuName: MENU_NAME, order: DEFAULT_ORDER)]
+	public sealed partial class SettingNameLabel
+	{
+		private const string FILE_NAME = nameof(SettingNameLabel);
+		private const string MENU_NAME = MODULE_PATH + SEPARATOR + nameof(View) + SEPARATOR + FILE_NAME;
 	}
 }

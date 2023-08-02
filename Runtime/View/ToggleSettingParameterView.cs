@@ -3,16 +3,12 @@
 
 using UnityEngine;
 using UnityEngine.UI;
-using static Depra.Settings.Unity.Runtime.Common.Module;
+using static Depra.Settings.Runtime.Common.Module;
 
-namespace Depra.Settings.Unity.Runtime.View
+namespace Depra.Settings.Runtime.View
 {
-	[AddComponentMenu(menuName: MENU_NAME, order: DEFAULT_ORDER)]
-	public sealed class ToggleSettingParameterView : SettingParameterView<bool>
+	public sealed partial class ToggleSettingParameterView : SettingParameterView<bool>
 	{
-		private const string FILE_NAME = nameof(ToggleSettingParameterView);
-		private const string MENU_NAME = MODULE_PATH + SEPARATOR + nameof(View) + SEPARATOR + FILE_NAME;
-
 		[SerializeField] private Toggle _toggle;
 
 		private void OnEnable()
@@ -29,8 +25,22 @@ namespace Depra.Settings.Unity.Runtime.View
 			_toggle.onValueChanged.RemoveListener(ApplyParameter);
 		}
 
-		private void ApplyParameter(bool value) => Parameter.Apply(value);
+		private void ApplyParameter(bool value) =>
+			Parameter.Apply(value);
 
-		private void UpdateToggle(bool value) => _toggle.SetIsOnWithoutNotify(value);
+		private void UpdateToggle(bool value)
+		{
+			if (value != _toggle.isOn)
+			{
+				_toggle.SetIsOnWithoutNotify(value);
+			}
+		}
+	}
+
+	[AddComponentMenu(menuName: MENU_NAME, order: DEFAULT_ORDER)]
+	public sealed partial class ToggleSettingParameterView
+	{
+		private const string FILE_NAME = nameof(ToggleSettingParameterView);
+		private const string MENU_NAME = MODULE_PATH + SEPARATOR + nameof(View) + SEPARATOR + FILE_NAME;
 	}
 }

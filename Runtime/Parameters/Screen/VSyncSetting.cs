@@ -2,20 +2,14 @@
 // SPDX-License-Identifier: Apache-2.0
 
 using System.ComponentModel;
-using Depra.Settings.Unity.Runtime.Parameters.Base;
+using Depra.Settings.Runtime.Parameters.Base;
 using UnityEngine;
-using static Depra.Settings.Unity.Runtime.Common.Module;
+using static Depra.Settings.Runtime.Common.Module;
 
-namespace Depra.Settings.Unity.Runtime.Parameters.Screen
+namespace Depra.Settings.Runtime.Parameters.Screen
 {
-	[CreateAssetMenu(fileName = FILE_NAME, menuName = MENU_NAME, order = DEFAULT_ORDER)]
-	public sealed class VSyncSetting : SettingsParameter<VSyncSetting.VSync>
+	public sealed partial class VSyncSetting : SettingsParameter<VSyncSetting.VSync>
 	{
-		private const string FILE_NAME = nameof(VSyncSetting);
-		private const string MENU_NAME = MODULE_PATH + SEPARATOR +
-		                                 nameof(Quality) + SEPARATOR +
-		                                 nameof(Screen) + SEPARATOR + FILE_NAME;
-
 		public override VSync CurrentValue =>
 			(VSync) QualitySettings.vSyncCount;
 
@@ -45,5 +39,14 @@ namespace Depra.Settings.Unity.Runtime.Parameters.Screen
 			[Description("Every Second VBlank")]
 			EVERY_SECOND_V_BLANK = 2,
 		}
+	}
+
+	[CreateAssetMenu(fileName = FILE_NAME, menuName = MENU_NAME, order = DEFAULT_ORDER)]
+	public sealed partial class VSyncSetting
+	{
+		private const string FILE_NAME = nameof(VSyncSetting);
+		private const string MENU_NAME = MODULE_PATH + SEPARATOR +
+		                                 nameof(Quality) + SEPARATOR +
+		                                 nameof(Screen) + SEPARATOR + FILE_NAME;
 	}
 }

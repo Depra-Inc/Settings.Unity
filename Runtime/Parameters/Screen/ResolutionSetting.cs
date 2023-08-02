@@ -2,18 +2,14 @@
 // SPDX-License-Identifier: Apache-2.0
 
 using System;
-using Depra.Settings.Unity.Runtime.Parameters.Base;
+using Depra.Settings.Runtime.Parameters.Base;
 using UnityEngine;
-using static Depra.Settings.Unity.Runtime.Common.Module;
+using static Depra.Settings.Runtime.Common.Module;
 
-namespace Depra.Settings.Unity.Runtime.Parameters.Screen
+namespace Depra.Settings.Runtime.Parameters.Screen
 {
-	[CreateAssetMenu(fileName = FILE_NAME, menuName = MENU_NAME, order = DEFAULT_ORDER)]
-	public sealed class ResolutionSetting : SettingsParameter<ResolutionSetting.SerializableResolution>
+	public sealed partial class ResolutionSetting : SettingsParameter<ResolutionSetting.SerializableResolution>
 	{
-		private const string FILE_NAME = nameof(ResolutionSetting);
-		private const string MENU_NAME = MODULE_PATH + SEPARATOR + nameof(Screen) + SEPARATOR + FILE_NAME;
-
 		public override SerializableResolution CurrentValue =>
 			UnityEngine.Screen.currentResolution;
 
@@ -33,7 +29,7 @@ namespace Depra.Settings.Unity.Runtime.Parameters.Screen
 				height = self.Height,
 				refreshRateRatio = self.RefreshRate
 			};
-			
+
 			/// <inheritdoc cref="Resolution.width"/>
 			[field: SerializeField] public int Width { get; private set; }
 
@@ -42,7 +38,7 @@ namespace Depra.Settings.Unity.Runtime.Parameters.Screen
 
 			/// <inheritdoc cref="Resolution.refreshRateRatio"/>
 			public RefreshRate RefreshRate;
-			
+
 			public SerializableResolution(int width, int height, RefreshRate refreshRate)
 			{
 				Width = width;
@@ -53,5 +49,12 @@ namespace Depra.Settings.Unity.Runtime.Parameters.Screen
 			/// <inheritdoc cref="Resolution.ToString"/>
 			public override string ToString() => $"{Width} x {Height} @ {RefreshRate}Hz";
 		}
+	}
+
+	[CreateAssetMenu(fileName = FILE_NAME, menuName = MENU_NAME, order = DEFAULT_ORDER)]
+	public sealed partial class ResolutionSetting
+	{
+		private const string FILE_NAME = nameof(ResolutionSetting);
+		private const string MENU_NAME = MODULE_PATH + SEPARATOR + nameof(Screen) + SEPARATOR + FILE_NAME;
 	}
 }

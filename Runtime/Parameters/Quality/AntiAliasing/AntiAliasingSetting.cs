@@ -1,20 +1,14 @@
 ﻿// Copyright © 2023 Nikolay Melnikov. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-using Depra.Settings.Unity.Runtime.Parameters.Base;
+using Depra.Settings.Runtime.Parameters.Base;
 using UnityEngine;
-using static Depra.Settings.Unity.Runtime.Common.Module;
+using static Depra.Settings.Runtime.Common.Module;
 
-namespace Depra.Settings.Unity.Runtime.Parameters.Quality.AntiAliasing
+namespace Depra.Settings.Runtime.Parameters.Quality.AntiAliasing
 {
-	[CreateAssetMenu(fileName = FILE_NAME, menuName = MENU_NAME, order = DEFAULT_ORDER)]
-	public sealed class AntiAliasingSetting : SettingsParameter<AntiAliasingSetting.AAFilteringOption>
+	public sealed partial class AntiAliasingSetting : SettingsParameter<AntiAliasingSetting.AAFilteringOption>
 	{
-		private const string FILE_NAME = nameof(AntiAliasingSetting);
-		private const string MENU_NAME = MODULE_PATH + SEPARATOR +
-		                                 nameof(Quality) + SEPARATOR +
-		                                 nameof(AntiAliasing) + SEPARATOR + FILE_NAME;
-
 		protected override string DefaultName => FILE_NAME;
 
 		public override AAFilteringOption CurrentValue =>
@@ -30,5 +24,14 @@ namespace Depra.Settings.Unity.Runtime.Parameters.Quality.AntiAliasing
 			_4xMultiSampling,
 			_8xMultiSampling,
 		}
+	}
+
+	[CreateAssetMenu(fileName = FILE_NAME, menuName = MENU_NAME, order = DEFAULT_ORDER)]
+	public sealed partial class AntiAliasingSetting
+	{
+		private const string FILE_NAME = nameof(AntiAliasingSetting);
+		private const string MENU_NAME = MODULE_PATH + SEPARATOR +
+		                                 nameof(Quality) + SEPARATOR +
+		                                 nameof(AntiAliasing) + SEPARATOR + FILE_NAME;
 	}
 }

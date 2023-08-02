@@ -1,4 +1,4 @@
-﻿namespace Depra.Settings.Unity.Runtime.Parameters.Quality.Textures
+﻿namespace Depra.Settings.Runtime.Parameters.Quality.Textures
 {
 	/// <summary>
 	/// The texture quality.

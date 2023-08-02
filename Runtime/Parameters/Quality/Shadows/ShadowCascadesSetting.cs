@@ -2,20 +2,14 @@
 // SPDX-License-Identifier: Apache-2.0
 
 using System.ComponentModel;
-using Depra.Settings.Unity.Runtime.Parameters.Base;
+using Depra.Settings.Runtime.Parameters.Base;
 using UnityEngine;
-using static Depra.Settings.Unity.Runtime.Common.Module;
+using static Depra.Settings.Runtime.Common.Module;
 
-namespace Depra.Settings.Unity.Runtime.Parameters.Quality.Shadows
+namespace Depra.Settings.Runtime.Parameters.Quality.Shadows
 {
-	[CreateAssetMenu(fileName = FILE_NAME, menuName = MENU_NAME, order = DEFAULT_ORDER)]
-	public sealed class ShadowCascadesSetting : SettingsParameter<ShadowCascadesSetting.ShadowCascades>
+	public sealed partial class ShadowCascadesSetting : SettingsParameter<ShadowCascadesSetting.ShadowCascades>
 	{
-		private const string FILE_NAME = nameof(ShadowCascadesSetting);
-		private const string MENU_NAME = MODULE_PATH + SEPARATOR + 
-		                                 nameof(Quality) + SEPARATOR + 
-		                                 nameof(Shadows) + SEPARATOR + FILE_NAME;
-
 		public override ShadowCascades CurrentValue =>
 			QualitySettings.shadowCascades switch
 			{
@@ -33,17 +27,26 @@ namespace Depra.Settings.Unity.Runtime.Parameters.Quality.Shadows
 				_ => 0
 			};
 		}
-		
+
 		public enum ShadowCascades
 		{
 			[Description("No Cascades")]
 			NO_CASCADES,
-			
+
 			[Description("Two Cascades")]
 			TWO_CASCADES,
-			
+
 			[Description("Four Cascades")]
 			FOUR_CASCADES,
 		}
+	}
+
+	[CreateAssetMenu(fileName = FILE_NAME, menuName = MENU_NAME, order = DEFAULT_ORDER)]
+	public sealed partial class ShadowCascadesSetting
+	{
+		private const string FILE_NAME = nameof(ShadowCascadesSetting);
+		private const string MENU_NAME = MODULE_PATH + SEPARATOR +
+		                                 nameof(Quality) + SEPARATOR +
+		                                 nameof(Shadows) + SEPARATOR + FILE_NAME;
 	}
 }

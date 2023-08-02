@@ -1,10 +1,13 @@
-﻿using UnityEngine.Audio;
+﻿// Copyright © 2023 Nikolay Melnikov. All rights reserved.
+// SPDX-License-Identifier: Apache-2.0
 
-namespace Depra.Settings.Unity.Runtime.Parameters.Audio
+using UnityEngine.Audio;
+
+namespace Depra.Settings.Runtime.Parameters.Audio
 {
 	internal static class AudioMixerExtensions
 	{
-		public static float GetRequiredFloat(this AudioMixer self, string exposedParameter)
+		public static float EnsureFloat(this AudioMixer self, string exposedParameter)
 		{
 			self.GetFloat(exposedParameter, out var value);
 			return value;

@@ -3,25 +3,23 @@
 
 using System;
 using System.Runtime.CompilerServices;
-using Depra.Settings.Unity.Runtime.Delegates;
-using Depra.Settings.Unity.Runtime.Persistent;
+using Depra.Settings.Runtime.Delegates;
 using UnityEngine;
 
-namespace Depra.Settings.Unity.Runtime.Parameters.Base
+namespace Depra.Settings.Runtime.Parameters.Base
 {
-	public abstract partial class SettingsParameter<TValue> : SettingsParameter
+	public abstract class SettingsParameter<TValue> : SettingsParameter
 	{
 		[SerializeField] private TValue _defaultValue;
 
 		public event SettingValueChangedDelegate<TValue> ValueChanged;
-		internal override event SettingValueChangedDelegate ValueChangedRaw;
+		public override event SettingValueChangedDelegate ValueChangedRaw;
 
 		public abstract TValue CurrentValue { get; }
+		public override Type ValueType => typeof(TValue);
+		
 		public TValue DefaultValue => _defaultValue;
 		
-		internal override Type ValueType => typeof(TValue);
-		internal override IPersistent Persistent => new DefaultSerializableState(this);
-
 		public override void Reload()
 		{
 			if (CurrentValue.Equals(_defaultValue))
@@ -38,6 +36,18 @@ namespace Depra.Settings.Unity.Runtime.Parameters.Base
 			ApplyWithoutNotify(value);
 			InvokeValueChanged(CurrentValue);
 		}
+
+		public override object CaptureState() => CurrentValue;
+
+		public override void RestoreState(object state) => 
+			ApplyWithoutNotify(Parse(state));
+
+		private TValue Parse(object state) => state switch
+		{
+			null => DefaultValue,
+			TValue castedState => castedState,
+			_ => (TValue) Convert.ChangeType(state, typeof(TValue))
+		};
 
 		protected abstract void OnApply(TValue value);
 

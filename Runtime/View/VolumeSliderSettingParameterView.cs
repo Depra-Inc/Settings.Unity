@@ -1,16 +1,16 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using static Depra.Settings.Unity.Runtime.Common.Module;
+﻿// Copyright © 2023 Nikolay Melnikov. All rights reserved.
+// SPDX-License-Identifier: Apache-2.0
 
-namespace Depra.Settings.Unity.Runtime.View
+using UnityEngine;
+using UnityEngine.UI;
+using static Depra.Settings.Runtime.Common.Module;
+
+namespace Depra.Settings.Runtime.View
 {
-	[AddComponentMenu(menuName: MENU_NAME, order: DEFAULT_ORDER)]
-	public sealed class VolumeSliderSettingParameterView : SettingParameterView<float>
+	public sealed partial class VolumeSliderSettingParameterView : SettingParameterView<float>
 	{
 		private const float MAX_VALUE = 1f;
 		private const float MIN_VALUE = 0.001f;
-		private const string FILE_NAME = nameof(VolumeSliderSettingParameterView);
-		private const string MENU_NAME = MODULE_PATH + SEPARATOR + nameof(View) + SEPARATOR + FILE_NAME;
 
 		[SerializeField] private Slider _slider;
 
@@ -42,5 +42,12 @@ namespace Depra.Settings.Unity.Runtime.View
 			var convertedValue = Mathf.Pow(10, value / 20);
 			_slider.SetValueWithoutNotify(convertedValue);
 		}
+	}
+
+	[AddComponentMenu(menuName: MENU_NAME, order: DEFAULT_ORDER)]
+	public sealed partial class VolumeSliderSettingParameterView
+	{
+		private const string FILE_NAME = nameof(VolumeSliderSettingParameterView);
+		private const string MENU_NAME = MODULE_PATH + SEPARATOR + nameof(View) + SEPARATOR + FILE_NAME;
 	}
 }

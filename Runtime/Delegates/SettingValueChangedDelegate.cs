@@ -1,7 +1,7 @@
 ﻿// Copyright © 2023 Nikolay Melnikov. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-namespace Depra.Settings.Unity.Runtime.Delegates
+namespace Depra.Settings.Runtime.Delegates
 {
     public delegate void SettingValueChangedDelegate(object value);
 

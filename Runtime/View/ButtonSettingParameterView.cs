@@ -1,15 +1,14 @@
-﻿using UnityEngine;
+﻿// Copyright © 2023 Nikolay Melnikov. All rights reserved.
+// SPDX-License-Identifier: Apache-2.0
+
+using UnityEngine;
 using UnityEngine.UI;
-using static Depra.Settings.Unity.Runtime.Common.Module;
+using static Depra.Settings.Runtime.Common.Module;
 
-namespace Depra.Settings.Unity.Runtime.View
+namespace Depra.Settings.Runtime.View
 {
-	[AddComponentMenu(menuName: MENU_NAME, order: DEFAULT_ORDER)]
-	public sealed class ButtonSettingParameterView : SettingParameterView<bool>
+	public sealed partial class ButtonSettingParameterView : SettingParameterView<bool>
 	{
-		private const string FILE_NAME = nameof(ButtonSettingParameterView);
-		private const string MENU_NAME = MODULE_PATH + SEPARATOR + nameof(View) + SEPARATOR + FILE_NAME;
-
 		[SerializeField] private Button _button;
 
 		private void OnEnable() =>
@@ -20,5 +19,12 @@ namespace Depra.Settings.Unity.Runtime.View
 
 		private void ApplyParameter() =>
 			Parameter.Apply(!Parameter.CurrentValue);
+	}
+
+	[AddComponentMenu(menuName: MENU_NAME, order: DEFAULT_ORDER)]
+	public sealed partial class ButtonSettingParameterView
+	{
+		private const string FILE_NAME = nameof(ButtonSettingParameterView);
+		private const string MENU_NAME = MODULE_PATH + SEPARATOR + nameof(View) + SEPARATOR + FILE_NAME;
 	}
 }

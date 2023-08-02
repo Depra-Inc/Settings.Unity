@@ -3,16 +3,12 @@
 
 using UnityEngine;
 using UnityEngine.UI;
-using static Depra.Settings.Unity.Runtime.Common.Module;
+using static Depra.Settings.Runtime.Common.Module;
 
-namespace Depra.Settings.Unity.Runtime.View
+namespace Depra.Settings.Runtime.View
 {
-	[AddComponentMenu(menuName: MENU_NAME, order: DEFAULT_ORDER)]
-	public sealed class SliderSettingParameterView : SettingParameterView<float>
+	public sealed partial class SliderSettingParameterView : SettingParameterView<float>
 	{
-		private const string FILE_NAME = nameof(SliderSettingParameterView);
-		private const string MENU_NAME = MODULE_PATH + SEPARATOR + nameof(View) + SEPARATOR + FILE_NAME;
-
 		[SerializeField] private Slider _slider;
 
 		private void OnEnable()
@@ -29,8 +25,22 @@ namespace Depra.Settings.Unity.Runtime.View
 			_slider.onValueChanged.RemoveListener(ApplyParameter);
 		}
 
-		private void ApplyParameter(float value) => Parameter.Apply(value);
+		private void ApplyParameter(float value) =>
+			Parameter.Apply(value);
 
-		private void UpdateSlider(float value) => _slider.SetValueWithoutNotify(value);
+		private void UpdateSlider(float value)
+		{
+			if (Mathf.Approximately(value, _slider.value) == false)
+			{
+				_slider.SetValueWithoutNotify(value);
+			}
+		}
+	}
+
+	[AddComponentMenu(menuName: MENU_NAME, order: DEFAULT_ORDER)]
+	public sealed partial class SliderSettingParameterView
+	{
+		private const string FILE_NAME = nameof(SliderSettingParameterView);
+		private const string MENU_NAME = MODULE_PATH + SEPARATOR + nameof(View) + SEPARATOR + FILE_NAME;
 	}
 }

@@ -2,23 +2,20 @@
 // SPDX-License-Identifier: Apache-2.0
 
 using System;
-using System.Runtime.CompilerServices;
-using Depra.Settings.Unity.Runtime.Delegates;
-using Depra.Settings.Unity.Runtime.Parameters.Extensions;
-using Depra.Settings.Unity.Runtime.Persistent;
+using Depra.Settings.Runtime.Delegates;
 using UnityEngine;
 
-namespace Depra.Settings.Unity.Runtime.Parameters.Base
+namespace Depra.Settings.Runtime.Parameters.Base
 {
 	/// <summary>
 	/// A class that all settings must inherit from.
 	/// </summary>
-	public abstract class SettingsParameter : ScriptableObject
+	public abstract partial class SettingsParameter : ScriptableObject, ISettingsParameter
 	{
-		[field: SerializeField] internal string Key { get; private set; }
+		[field: SerializeField] public string Key { get; private set; }
 		[field: SerializeField] public string DisplayName { get; private set; }
 
-		internal abstract event SettingValueChangedDelegate ValueChangedRaw;
+		public abstract event SettingValueChangedDelegate ValueChangedRaw;
 
 		private void Reset()
 		{
@@ -26,20 +23,14 @@ namespace Depra.Settings.Unity.Runtime.Parameters.Base
 			DisplayName = string.IsNullOrEmpty(DisplayName) ? ResetName() : DisplayName;
 		}
 
-		internal abstract Type ValueType { get; }
-		internal abstract IPersistent Persistent { get; }
+		public abstract Type ValueType { get; }
+		
 		protected virtual string DefaultName => GetType().Name;
 
 		public abstract void Reload();
 
-		[ContextMenu(nameof(ResetKey))]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private string ResetKey() => Key = DefaultName.RemoveBlackWords();
-		
-		[ContextMenu(nameof(ResetName))]
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private string ResetName() => DisplayName = DefaultName
-			.RemoveBlackWords()
-			.PutSpacesBeforeCapitals();
+		public abstract object CaptureState();
+
+		public abstract void RestoreState(object state);
 	}
 }

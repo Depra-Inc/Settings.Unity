@@ -1,7 +1,8 @@
 {
-    "name": "Depra.Settings.Unity",
+    "name": "Depra.Settings",
     "rootNamespace": "",
     "references": [
+        "Depra.Persistent",
         "Unity.TextMeshPro"
     ],
     "includePlatforms": [],

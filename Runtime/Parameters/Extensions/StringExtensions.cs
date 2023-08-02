@@ -3,7 +3,7 @@
 
 using System.Text.RegularExpressions;
 
-namespace Depra.Settings.Unity.Runtime.Parameters.Extensions
+namespace Depra.Settings.Runtime.Parameters.Extensions
 {
 	internal static class StringExtensions
 	{

@@ -1,15 +1,11 @@
-﻿using Depra.Settings.Unity.Runtime.Parameters.Base;
+﻿using Depra.Settings.Runtime.Parameters.Base;
 using UnityEngine;
-using static Depra.Settings.Unity.Runtime.Common.Module;
+using static Depra.Settings.Runtime.Common.Module;
 
-namespace Depra.Settings.Unity.Runtime.Parameters.Screen
+namespace Depra.Settings.Runtime.Parameters.Screen
 {
-	[CreateAssetMenu(fileName = FILE_NAME, menuName = MENU_NAME, order = DEFAULT_ORDER)]
-	public sealed class ResolutionScalingFixedDPIFactorSetting : SettingsParameter<float>
+	public sealed partial class ResolutionScalingFixedDPIFactorSetting : SettingsParameter<float>
 	{
-		private const string FILE_NAME = nameof(ResolutionScalingFixedDPIFactorSetting);
-		private const string MENU_NAME = MODULE_PATH + SEPARATOR + nameof(Screen) + SEPARATOR + FILE_NAME;
-
 		[SerializeField] private float _min = 0.01f;
 
 		public override float CurrentValue =>
@@ -17,5 +13,12 @@ namespace Depra.Settings.Unity.Runtime.Parameters.Screen
 
 		protected override void OnApply(float value) =>
 			QualitySettings.resolutionScalingFixedDPIFactor = Mathf.Max(value, _min);
+	}
+
+	[CreateAssetMenu(fileName = FILE_NAME, menuName = MENU_NAME, order = DEFAULT_ORDER)]
+	public sealed partial class ResolutionScalingFixedDPIFactorSetting
+	{
+		private const string FILE_NAME = nameof(ResolutionScalingFixedDPIFactorSetting);
+		private const string MENU_NAME = MODULE_PATH + SEPARATOR + nameof(Screen) + SEPARATOR + FILE_NAME;
 	}
 }
