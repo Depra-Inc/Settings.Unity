@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 149da1e281874e6b859158c886e9e1b2, type: 3}
+  m_Name: Sample.VolumeSetting
+  m_EditorClassIdentifier: 
+  <Key>k__BackingField: Audio Example.Music Volume
+  <DisplayName>k__BackingField: Audio Volume
+  _defaultValue: 1
+  _audioMixer: {fileID: 24100000, guid: 3a5a8dd756d51cf4281aa5912d7ceaed, type: 2}
+  _exposedParameter: Volume

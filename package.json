@@ -13,5 +13,12 @@
   "license": "Apache-2.0",
   "dependencies": {
     "com.unity.textmeshpro": "3.0.0"
-  }
+  },
+  "samples": [
+    {
+      "displayName": "UI & Settings",
+      "description": "",
+      "path": "Samples"
+    }
+  ]
 }
