@@ -1,4 +1,7 @@
-﻿using Depra.Settings.Runtime.Parameters.Base;
+﻿// Copyright © 2023 Nikolay Melnikov. All rights reserved.
+// SPDX-License-Identifier: Apache-2.0
+
+using Depra.Settings.Runtime.Parameters.Base;
 using UnityEngine;
 using static Depra.Settings.Runtime.Common.Module;
 

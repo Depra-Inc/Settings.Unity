@@ -1,4 +1,9 @@
-﻿using Depra.Settings.Runtime.Parameters.Base;
+﻿// Copyright © 2023 Nikolay Melnikov. All rights reserved.
+// SPDX-License-Identifier: Apache-2.0
+
+#if UNITY_2022_1_OR_NEWER
+
+using Depra.Settings.Runtime.Parameters.Base;
 using UnityEngine;
 using static Depra.Settings.Runtime.Common.Module;
 
@@ -22,3 +27,5 @@ namespace Depra.Settings.Runtime.Parameters.Quality.LevelOfDetail
 		                                 nameof(LevelOfDetail) + SEPARATOR + FILE_NAME;
 	}
 }
+
+#endif

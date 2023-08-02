@@ -21,13 +21,13 @@ namespace Depra.Settings.Runtime.Parameters.Screen
 		public struct SerializableResolution
 		{
 			public static implicit operator SerializableResolution(Resolution self) =>
-				new(self.width, self.height, self.refreshRateRatio);
+				new(self.width, self.height, self.refreshRate);
 
 			public static implicit operator Resolution(SerializableResolution self) => new()
 			{
 				width = self.Width,
 				height = self.Height,
-				refreshRateRatio = self.RefreshRate
+				refreshRate = self.RefreshRate
 			};
 
 			/// <inheritdoc cref="Resolution.width"/>
@@ -36,10 +36,10 @@ namespace Depra.Settings.Runtime.Parameters.Screen
 			/// <inheritdoc cref="Resolution.height"/>
 			[field: SerializeField] public int Height { get; private set; }
 
-			/// <inheritdoc cref="Resolution.refreshRateRatio"/>
-			public RefreshRate RefreshRate;
+			/// <inheritdoc cref="Resolution.refreshRate"/>
+			public int RefreshRate;
 
-			public SerializableResolution(int width, int height, RefreshRate refreshRate)
+			public SerializableResolution(int width, int height, int refreshRate)
 			{
 				Width = width;
 				Height = height;

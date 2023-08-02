@@ -12,16 +12,26 @@ namespace Depra.Settings.Runtime.Parameters.Quality.Mipmaps
 		[SerializeField] private int _min;
 
 		public override int CurrentValue =>
+#if UNITY_2022_1_OR_NEWER
 			QualitySettings.globalTextureMipmapLimit;
+#else
+			QualitySettings.masterTextureLimit;
+#endif
 
 		protected override void OnApply(int value) =>
-			QualitySettings.globalTextureMipmapLimit = Mathf.Max(value, _min);
+#if UNITY_2022_1_OR_NEWER
+			QualitySettings.globalTextureMipmapLimit =
+#else
+			QualitySettings.masterTextureLimit =
+#endif
+				Mathf.Max(value, _min);
 	}
 
 	[CreateAssetMenu(fileName = FILE_NAME, menuName = MENU_NAME, order = DEFAULT_ORDER)]
 	public sealed partial class TextureMipmapLimitSetting
 	{
 		private const string FILE_NAME = nameof(TextureMipmapLimitSetting);
+
 		private const string MENU_NAME = MODULE_PATH + SEPARATOR +
 		                                 nameof(Quality) + SEPARATOR +
 		                                 nameof(Mipmaps) + SEPARATOR + FILE_NAME;
