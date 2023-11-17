@@ -1,24 +1,22 @@
 {
-  "name": "com.depra.settings",
-  "displayName": "Depra.Settings",
-  "version": "0.0.7",
-  "unity": "2021.3",
-  "author": "Depra, Inc.",
-  "description": "Game settings module.",
-  "keywords": [
-    "Depra",
-    "Settings",
-    "Runtime"
-  ],
-  "license": "Apache-2.0",
-  "dependencies": {
-    "com.unity.textmeshpro": "3.0.0"
-  },
-  "samples": [
-    {
-      "displayName": "UI & Settings",
-      "description": "",
-      "path": "Samples"
-    }
-  ]
+	"name": "com.depra.settings",
+	"version": "0.0.8",
+	"displayName": "Depra.Settings",
+	"description": "Game settings module.",
+	"unity": "2021.3",
+	"license": "Apache-2.0",
+	"keywords": [
+		"Depra",
+		"Settings",
+		"Runtime"
+	],
+	"author": {
+		"name": "Depra, Inc.",
+		"email": "n.melnikov@depra.org",
+		"url": "https://github.com/Depra-Inc"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Depra-Inc/Persistent.Unity.git"
+	}
 }

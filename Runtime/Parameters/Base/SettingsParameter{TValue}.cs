@@ -12,8 +12,8 @@ namespace Depra.Settings.Runtime.Parameters.Base
 	{
 		[SerializeField] private TValue _defaultValue;
 
-		public event SettingValueChangedDelegate<TValue> ValueChanged;
-		public override event SettingValueChangedDelegate ValueChangedRaw;
+		public event SettingValueChanged<TValue> ValueChanged;
+		public override event SettingValueChanged ValueChangedRaw;
 
 		public abstract TValue CurrentValue { get; }
 		public override Type ValueType => typeof(TValue);

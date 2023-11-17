@@ -15,7 +15,7 @@ namespace Depra.Settings.Runtime.Parameters.Base
 		[field: SerializeField] public string Key { get; private set; }
 		[field: SerializeField] public string DisplayName { get; private set; }
 
-		public abstract event SettingValueChangedDelegate ValueChangedRaw;
+		public abstract event SettingValueChanged ValueChangedRaw;
 
 		private void Reset()
 		{

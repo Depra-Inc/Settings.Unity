@@ -8,7 +8,7 @@ namespace Depra.Settings.Runtime.Parameters.Base
 {
 	public interface ISettingsParameter
 	{
-		event SettingValueChangedDelegate ValueChangedRaw;
+		event SettingValueChanged ValueChangedRaw;
 
 		Type ValueType { get; }
 		

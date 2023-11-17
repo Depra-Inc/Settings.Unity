@@ -1,6 +1,6 @@
 {
     "name": "Depra.Settings",
-    "rootNamespace": "",
+    "rootNamespace": "Depra.Settings",
     "references": [
         "Depra.Persistent",
         "Unity.TextMeshPro"
