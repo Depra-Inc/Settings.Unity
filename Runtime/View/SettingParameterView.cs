@@ -1,7 +1,7 @@
-﻿// Copyright © 2023 Nikolay Melnikov. All rights reserved.
-// SPDX-License-Identifier: Apache-2.0
+﻿// SPDX-License-Identifier: Apache-2.0
+// © 2023-2024 Nikolay Melnikov <n.melnikov@depra.org>
 
-using Depra.Settings.Runtime.Parameters.Base;
+using Depra.Settings.Parameters.Base;
 using UnityEngine;
 
 namespace Depra.Settings.Runtime.View

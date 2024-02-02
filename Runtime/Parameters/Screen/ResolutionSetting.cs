@@ -1,17 +1,16 @@
-// Copyright © 2023 Nikolay Melnikov. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
+// © 2023-2024 Nikolay Melnikov <n.melnikov@depra.org>
 
 using System;
-using Depra.Settings.Runtime.Parameters.Base;
+using Depra.Settings.Parameters.Base;
 using UnityEngine;
-using static Depra.Settings.Runtime.Common.Module;
+using static Depra.Settings.Common.Module;
 
-namespace Depra.Settings.Runtime.Parameters.Screen
+namespace Depra.Settings.Parameters.Screen
 {
 	public sealed partial class ResolutionSetting : SettingsParameter<ResolutionSetting.SerializableResolution>
 	{
-		public override SerializableResolution CurrentValue =>
-			UnityEngine.Screen.currentResolution;
+		public override SerializableResolution CurrentValue => UnityEngine.Screen.currentResolution;
 
 		protected override void OnApply(SerializableResolution resolution) =>
 			UnityEngine.Screen.SetResolution(resolution.Width, resolution.Height,
@@ -55,6 +54,6 @@ namespace Depra.Settings.Runtime.Parameters.Screen
 	public sealed partial class ResolutionSetting
 	{
 		private const string FILE_NAME = nameof(ResolutionSetting);
-		private const string MENU_NAME = MODULE_PATH + SEPARATOR + nameof(Screen) + SEPARATOR + FILE_NAME;
+		private const string MENU_NAME = MENU_PATH + SLASH + nameof(Screen) + SLASH + FILE_NAME;
 	}
 }

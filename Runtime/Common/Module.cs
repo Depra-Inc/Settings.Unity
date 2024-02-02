@@ -1,16 +1,12 @@
-// Copyright © 2023 Nikolay Melnikov. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
+// © 2023-2024 Nikolay Melnikov <n.melnikov@depra.org>
 
-namespace Depra.Settings.Runtime.Common
+namespace Depra.Settings.Common
 {
     internal static class Module
     {
-        public const string ENGINE_NAME = "Unity";
-        public const string MODULE_NAME = "Settings";
-        private const string FRAMEWORK_NAME = "Depra";
-
+        internal const string SLASH = "/";
         internal const int DEFAULT_ORDER = 51;
-        internal const string SEPARATOR = "/";
-        internal const string MODULE_PATH = FRAMEWORK_NAME + SEPARATOR + MODULE_NAME;
+        internal const string MENU_PATH = nameof(Depra) + SLASH + nameof(Settings);
     }
 }

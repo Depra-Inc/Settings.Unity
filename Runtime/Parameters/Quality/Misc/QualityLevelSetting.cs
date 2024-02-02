@@ -1,9 +1,12 @@
-﻿using System;
-using Depra.Settings.Runtime.Parameters.Base;
-using UnityEngine;
-using static Depra.Settings.Runtime.Common.Module;
+﻿// SPDX-License-Identifier: Apache-2.0
+// © 2023-2024 Nikolay Melnikov <n.melnikov@depra.org>
 
-namespace Depra.Settings.Runtime.Parameters.Quality.Misc
+using System;
+using Depra.Settings.Parameters.Base;
+using UnityEngine;
+using static Depra.Settings.Common.Module;
+
+namespace Depra.Settings.Parameters.Quality.Misc
 {
 	public sealed partial class QualityLevelSetting : ArraySettingParameter<string>
 	{
@@ -22,8 +25,8 @@ namespace Depra.Settings.Runtime.Parameters.Quality.Misc
 	public sealed partial class QualityLevelSetting
 	{
 		private const string FILE_NAME = nameof(QualityLevelSetting);
-		private const string MENU_NAME = MODULE_PATH + SEPARATOR +
-		                                 nameof(Quality) + SEPARATOR +
-		                                 nameof(Misc) + SEPARATOR + FILE_NAME;
+		private const string MENU_NAME = MENU_PATH + SLASH +
+		                                 nameof(Quality) + SLASH +
+		                                 nameof(Misc) + SLASH + FILE_NAME;
 	}
 }

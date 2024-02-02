@@ -1,19 +1,18 @@
-﻿// Copyright © 2023 Nikolay Melnikov. All rights reserved.
-// SPDX-License-Identifier: Apache-2.0
+﻿// SPDX-License-Identifier: Apache-2.0
+// © 2023-2024 Nikolay Melnikov <n.melnikov@depra.org>
 
-using Depra.Settings.Runtime.Parameters.Base;
+using Depra.Settings.Parameters.Base;
 using UnityEngine;
-using static Depra.Settings.Runtime.Common.Module;
+using static Depra.Settings.Common.Module;
 
-namespace Depra.Settings.Runtime.Parameters.Quality.Shadows
+namespace Depra.Settings.Parameters.Quality.Shadows
 {
 	public sealed partial class ShadowCascade2SplitSetting : SettingsParameter<float>
 	{
 		[SerializeField] private float _min;
 		[SerializeField] private float _max = 1f;
 
-		public override float CurrentValue =>
-			QualitySettings.shadowCascade2Split;
+		public override float CurrentValue => QualitySettings.shadowCascade2Split;
 
 		protected override void OnApply(float value) =>
 			QualitySettings.shadowCascade2Split = Mathf.Clamp(value, _min, _max);
@@ -23,8 +22,8 @@ namespace Depra.Settings.Runtime.Parameters.Quality.Shadows
 	public sealed partial class ShadowCascade2SplitSetting
 	{
 		private const string FILE_NAME = nameof(ShadowCascade2SplitSetting);
-		private const string MENU_NAME = MODULE_PATH + SEPARATOR +
-		                                 nameof(Quality) + SEPARATOR +
-		                                 nameof(Shadows) + SEPARATOR + FILE_NAME;
+		private const string MENU_NAME = MENU_PATH + SLASH +
+		                                 nameof(Quality) + SLASH +
+		                                 nameof(Shadows) + SLASH + FILE_NAME;
 	}
 }

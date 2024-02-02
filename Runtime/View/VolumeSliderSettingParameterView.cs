@@ -1,9 +1,9 @@
-﻿// Copyright © 2023 Nikolay Melnikov. All rights reserved.
-// SPDX-License-Identifier: Apache-2.0
+﻿// SPDX-License-Identifier: Apache-2.0
+// © 2023-2024 Nikolay Melnikov <n.melnikov@depra.org>
 
 using UnityEngine;
 using UnityEngine.UI;
-using static Depra.Settings.Runtime.Common.Module;
+using static Depra.Settings.Common.Module;
 
 namespace Depra.Settings.Runtime.View
 {
@@ -28,8 +28,7 @@ namespace Depra.Settings.Runtime.View
 			_slider.onValueChanged.AddListener(ApplyParameter);
 		}
 
-		private void OnDisable() =>
-			_slider.onValueChanged.RemoveListener(ApplyParameter);
+		private void OnDisable() => _slider.onValueChanged.RemoveListener(ApplyParameter);
 
 		private void ApplyParameter(float value)
 		{
@@ -48,6 +47,6 @@ namespace Depra.Settings.Runtime.View
 	public sealed partial class VolumeSliderSettingParameterView
 	{
 		private const string FILE_NAME = nameof(VolumeSliderSettingParameterView);
-		private const string MENU_NAME = MODULE_PATH + SEPARATOR + nameof(View) + SEPARATOR + FILE_NAME;
+		private const string MENU_NAME = MENU_PATH + SLASH + nameof(View) + SLASH + FILE_NAME;
 	}
 }

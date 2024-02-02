@@ -1,9 +1,9 @@
-﻿// Copyright © 2023 Nikolay Melnikov. All rights reserved.
-// SPDX-License-Identifier: Apache-2.0
+﻿// SPDX-License-Identifier: Apache-2.0
+// © 2023-2024 Nikolay Melnikov <n.melnikov@depra.org>
 
 using UnityEngine.Audio;
 
-namespace Depra.Settings.Runtime.Parameters.Audio
+namespace Depra.Settings.Parameters.Audio
 {
 	internal static class AudioMixerExtensions
 	{

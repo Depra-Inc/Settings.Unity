@@ -1,27 +1,25 @@
-﻿// Copyright © 2023 Nikolay Melnikov. All rights reserved.
-// SPDX-License-Identifier: Apache-2.0
+﻿// SPDX-License-Identifier: Apache-2.0
+// © 2023-2024 Nikolay Melnikov <n.melnikov@depra.org>
 
-using Depra.Settings.Runtime.Parameters.Base;
+using Depra.Settings.Parameters.Base;
 using UnityEngine;
-using static Depra.Settings.Runtime.Common.Module;
+using static Depra.Settings.Common.Module;
 
-namespace Depra.Settings.Runtime.Parameters.Quality.Upload
+namespace Depra.Settings.Parameters.Quality.Upload
 {
 	public sealed partial class AsyncUploadPersistentBufferSetting : SettingsParameter<bool>
 	{
-		public override bool CurrentValue =>
-			QualitySettings.asyncUploadPersistentBuffer;
+		public override bool CurrentValue => QualitySettings.asyncUploadPersistentBuffer;
 
-		protected override void OnApply(bool value) =>
-			QualitySettings.asyncUploadPersistentBuffer = value;
+		protected override void OnApply(bool value) => QualitySettings.asyncUploadPersistentBuffer = value;
 	}
 
 	[CreateAssetMenu(fileName = FILE_NAME, menuName = MENU_NAME, order = DEFAULT_ORDER)]
 	public sealed partial class AsyncUploadPersistentBufferSetting
 	{
 		private const string FILE_NAME = nameof(AsyncUploadPersistentBufferSetting);
-		private const string MENU_NAME = MODULE_PATH + SEPARATOR +
-		                                 nameof(Quality) + SEPARATOR +
-		                                 nameof(Upload) + SEPARATOR + FILE_NAME;
+		private const string MENU_NAME = MENU_PATH + SLASH +
+		                                 nameof(Quality) + SLASH +
+		                                 nameof(Upload) + SLASH + FILE_NAME;
 	}
 }

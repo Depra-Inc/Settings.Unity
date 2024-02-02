@@ -1,9 +1,9 @@
-﻿// Copyright © 2023 Nikolay Melnikov. All rights reserved.
-// SPDX-License-Identifier: Apache-2.0
+﻿// SPDX-License-Identifier: Apache-2.0
+// © 2023-2024 Nikolay Melnikov <n.melnikov@depra.org>
 
 using System.Linq;
 
-namespace Depra.Settings.Runtime.Parameters.Extensions
+namespace Depra.Settings.Parameters.Extensions
 {
 	internal static class SettingsNameExtensions
 	{

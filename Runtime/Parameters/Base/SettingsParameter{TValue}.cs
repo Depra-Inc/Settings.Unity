@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using Depra.Settings.Runtime.Delegates;
 using UnityEngine;
 
-namespace Depra.Settings.Runtime.Parameters.Base
+namespace Depra.Settings.Parameters.Base
 {
 	public abstract class SettingsParameter<TValue> : SettingsParameter
 	{

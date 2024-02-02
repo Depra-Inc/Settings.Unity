@@ -1,27 +1,25 @@
-﻿// Copyright © 2023 Nikolay Melnikov. All rights reserved.
-// SPDX-License-Identifier: Apache-2.0
+﻿// SPDX-License-Identifier: Apache-2.0
+// © 2023-2024 Nikolay Melnikov <n.melnikov@depra.org>
 
-using Depra.Settings.Runtime.Parameters.Base;
+using Depra.Settings.Parameters.Base;
 using UnityEngine;
-using static Depra.Settings.Runtime.Common.Module;
+using static Depra.Settings.Common.Module;
 
-namespace Depra.Settings.Runtime.Parameters.Quality.Particles
+namespace Depra.Settings.Parameters.Quality.Particles
 {
 	public sealed partial class SoftParticlesSetting : SettingsParameter<bool>
 	{
-		public override bool CurrentValue =>
-			QualitySettings.softParticles;
+		public override bool CurrentValue => QualitySettings.softParticles;
 
-		protected override void OnApply(bool value) =>
-			QualitySettings.softParticles = value;
+		protected override void OnApply(bool value) => QualitySettings.softParticles = value;
 	}
 
 	[CreateAssetMenu(fileName = FILE_NAME, menuName = MENU_NAME, order = DEFAULT_ORDER)]
 	public sealed partial class SoftParticlesSetting
 	{
 		private const string FILE_NAME = nameof(SoftParticlesSetting);
-		private const string MENU_NAME = MODULE_PATH + SEPARATOR +
-		                                 nameof(Quality) + SEPARATOR +
-		                                 nameof(Particles) + SEPARATOR + FILE_NAME;
+		private const string MENU_NAME = MENU_PATH + SLASH +
+		                                 nameof(Quality) + SLASH +
+		                                 nameof(Particles) + SLASH + FILE_NAME;
 	}
 }

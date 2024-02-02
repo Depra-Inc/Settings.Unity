@@ -1,24 +1,25 @@
-﻿using Depra.Settings.Runtime.Parameters.Base;
-using UnityEngine;
-using static Depra.Settings.Runtime.Common.Module;
+﻿// SPDX-License-Identifier: Apache-2.0
+// © 2023-2024 Nikolay Melnikov <n.melnikov@depra.org>
 
-namespace Depra.Settings.Runtime.Parameters.Quality.Misc
+using Depra.Settings.Parameters.Base;
+using UnityEngine;
+using static Depra.Settings.Common.Module;
+
+namespace Depra.Settings.Parameters.Quality.Misc
 {
 	public sealed partial class SoftVegetationSetting : SettingsParameter<bool>
 	{
-		public override bool CurrentValue =>
-			QualitySettings.softVegetation;
+		public override bool CurrentValue => QualitySettings.softVegetation;
 
-		protected override void OnApply(bool value) =>
-			QualitySettings.softVegetation = value;
+		protected override void OnApply(bool value) => QualitySettings.softVegetation = value;
 	}
 
 	[CreateAssetMenu(fileName = FILE_NAME, menuName = MENU_NAME, order = DEFAULT_ORDER)]
 	public sealed partial class SoftVegetationSetting
 	{
 		private const string FILE_NAME = nameof(SoftVegetationSetting);
-		private const string MENU_NAME = MODULE_PATH + SEPARATOR +
-		                                 nameof(Quality) + SEPARATOR +
-		                                 nameof(Misc) + SEPARATOR + FILE_NAME;
+		private const string MENU_NAME = MENU_PATH + SLASH +
+		                                 nameof(Quality) + SLASH +
+		                                 nameof(Misc) + SLASH + FILE_NAME;
 	}
 }

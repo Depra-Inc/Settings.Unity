@@ -1,11 +1,11 @@
-﻿// Copyright © 2023 Nikolay Melnikov. All rights reserved.
-// SPDX-License-Identifier: Apache-2.0
+﻿// SPDX-License-Identifier: Apache-2.0
+// © 2023-2024 Nikolay Melnikov <n.melnikov@depra.org>
 
 using System.Collections.Generic;
 using UnityEngine;
-using static Depra.Settings.Runtime.Common.Module;
+using static Depra.Settings.Common.Module;
 
-namespace Depra.Settings.Runtime.Parameters.Base
+namespace Depra.Settings.Parameters.Base
 {
 	public sealed partial class SettingsPreset : ScriptableObject
 	{
@@ -18,6 +18,6 @@ namespace Depra.Settings.Runtime.Parameters.Base
 	public sealed partial class SettingsPreset
 	{
 		private const string FILE_NAME = nameof(SettingsPreset);
-		private const string MENU_NAME = MODULE_PATH + SEPARATOR + FILE_NAME;
+		private const string MENU_NAME = MENU_PATH + SLASH + FILE_NAME;
 	}
 }

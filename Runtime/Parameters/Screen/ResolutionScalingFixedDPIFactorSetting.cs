@@ -1,15 +1,17 @@
-﻿using Depra.Settings.Runtime.Parameters.Base;
-using UnityEngine;
-using static Depra.Settings.Runtime.Common.Module;
+﻿// SPDX-License-Identifier: Apache-2.0
+// © 2023-2024 Nikolay Melnikov <n.melnikov@depra.org>
 
-namespace Depra.Settings.Runtime.Parameters.Screen
+using Depra.Settings.Parameters.Base;
+using UnityEngine;
+using static Depra.Settings.Common.Module;
+
+namespace Depra.Settings.Parameters.Screen
 {
 	public sealed partial class ResolutionScalingFixedDPIFactorSetting : SettingsParameter<float>
 	{
 		[SerializeField] private float _min = 0.01f;
 
-		public override float CurrentValue =>
-			QualitySettings.resolutionScalingFixedDPIFactor;
+		public override float CurrentValue => QualitySettings.resolutionScalingFixedDPIFactor;
 
 		protected override void OnApply(float value) =>
 			QualitySettings.resolutionScalingFixedDPIFactor = Mathf.Max(value, _min);
@@ -19,6 +21,6 @@ namespace Depra.Settings.Runtime.Parameters.Screen
 	public sealed partial class ResolutionScalingFixedDPIFactorSetting
 	{
 		private const string FILE_NAME = nameof(ResolutionScalingFixedDPIFactorSetting);
-		private const string MENU_NAME = MODULE_PATH + SEPARATOR + nameof(Screen) + SEPARATOR + FILE_NAME;
+		private const string MENU_NAME = MENU_PATH + SLASH + nameof(Screen) + SLASH + FILE_NAME;
 	}
 }

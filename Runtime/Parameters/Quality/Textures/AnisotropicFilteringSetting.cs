@@ -1,29 +1,27 @@
-// Copyright © 2023 Nikolay Melnikov. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
+// © 2023-2024 Nikolay Melnikov <n.melnikov@depra.org>
 
-using Depra.Settings.Runtime.Parameters.Base;
+using Depra.Settings.Parameters.Base;
 using UnityEngine;
-using static Depra.Settings.Runtime.Common.Module;
+using static Depra.Settings.Common.Module;
 
-namespace Depra.Settings.Runtime.Parameters.Quality.Textures
+namespace Depra.Settings.Parameters.Quality.Textures
 {
 	public sealed partial class AnisotropicFilteringSetting : SettingsParameter<AnisotropicFiltering>
 	{
 		protected override string DefaultName => FILE_NAME;
 
-		public override AnisotropicFiltering CurrentValue =>
-			QualitySettings.anisotropicFiltering;
+		public override AnisotropicFiltering CurrentValue => QualitySettings.anisotropicFiltering;
 
-		protected override void OnApply(AnisotropicFiltering value) =>
-			QualitySettings.anisotropicFiltering = value;
+		protected override void OnApply(AnisotropicFiltering value) => QualitySettings.anisotropicFiltering = value;
 	}
 
 	[CreateAssetMenu(fileName = FILE_NAME, menuName = MENU_NAME, order = DEFAULT_ORDER)]
 	public sealed partial class AnisotropicFilteringSetting
 	{
 		private const string FILE_NAME = nameof(AnisotropicFilteringSetting);
-		private const string MENU_NAME = MODULE_PATH + SEPARATOR +
-		                                 nameof(Quality) + SEPARATOR +
-		                                 nameof(Textures) + SEPARATOR + FILE_NAME;
+		private const string MENU_NAME = MENU_PATH + SLASH +
+		                                 nameof(Quality) + SLASH +
+		                                 nameof(Textures) + SLASH + FILE_NAME;
 	}
 }

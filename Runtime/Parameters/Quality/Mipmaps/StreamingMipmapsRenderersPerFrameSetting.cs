@@ -1,18 +1,17 @@
-﻿// Copyright © 2023 Nikolay Melnikov. All rights reserved.
-// SPDX-License-Identifier: Apache-2.0
+﻿// SPDX-License-Identifier: Apache-2.0
+// © 2023-2024 Nikolay Melnikov <n.melnikov@depra.org>
 
-using Depra.Settings.Runtime.Parameters.Base;
+using Depra.Settings.Parameters.Base;
 using UnityEngine;
-using static Depra.Settings.Runtime.Common.Module;
+using static Depra.Settings.Common.Module;
 
-namespace Depra.Settings.Runtime.Parameters.Quality.Mipmaps
+namespace Depra.Settings.Parameters.Quality.Mipmaps
 {
 	public sealed partial class StreamingMipmapsRenderersPerFrameSetting : SettingsParameter<int>
 	{
 		[SerializeField] private int _min = 1;
 
-		public override int CurrentValue =>
-			QualitySettings.streamingMipmapsRenderersPerFrame;
+		public override int CurrentValue => QualitySettings.streamingMipmapsRenderersPerFrame;
 
 		protected override void OnApply(int value) =>
 			QualitySettings.streamingMipmapsRenderersPerFrame = Mathf.Max(value, _min);
@@ -22,8 +21,8 @@ namespace Depra.Settings.Runtime.Parameters.Quality.Mipmaps
 	public sealed partial class StreamingMipmapsRenderersPerFrameSetting
 	{
 		private const string FILE_NAME = nameof(StreamingMipmapsRenderersPerFrameSetting);
-		private const string MENU_NAME = MODULE_PATH + SEPARATOR +
-		                                 nameof(Quality) + SEPARATOR +
-		                                 nameof(Mipmaps) + SEPARATOR + FILE_NAME;
+		private const string MENU_NAME = MENU_PATH + SLASH +
+		                                 nameof(Quality) + SLASH +
+		                                 nameof(Mipmaps) + SLASH + FILE_NAME;
 	}
 }
