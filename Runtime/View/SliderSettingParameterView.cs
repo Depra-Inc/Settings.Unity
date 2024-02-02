@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static Depra.Settings.Module;
 
-namespace Depra.Settings.Runtime.View
+namespace Depra.Settings.View
 {
 	public sealed partial class SliderSettingParameterView : SettingParameterView<float>
 	{

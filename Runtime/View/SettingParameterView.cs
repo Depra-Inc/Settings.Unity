@@ -4,7 +4,7 @@
 using Depra.Settings.Parameters.Base;
 using UnityEngine;
 
-namespace Depra.Settings.Runtime.View
+namespace Depra.Settings.View
 {
 	public abstract class SettingParameterView<TValue> : MonoBehaviour
 	{
