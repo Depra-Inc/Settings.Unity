@@ -4,7 +4,7 @@
 #if UNITY_2022_1_OR_NEWER
 using Depra.Settings.Parameters.Base;
 using UnityEngine;
-using static Depra.Settings.Common.Module;
+using static Depra.Settings.Module;
 
 namespace Depra.Settings.Parameters.Quality.LevelOfDetail
 {

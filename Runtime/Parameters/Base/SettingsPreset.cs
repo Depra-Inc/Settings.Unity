@@ -3,7 +3,7 @@
 
 using System.Collections.Generic;
 using UnityEngine;
-using static Depra.Settings.Common.Module;
+using static Depra.Settings.Module;
 
 namespace Depra.Settings.Parameters.Base
 {

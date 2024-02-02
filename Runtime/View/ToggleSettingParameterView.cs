@@ -3,7 +3,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
-using static Depra.Settings.Common.Module;
+using static Depra.Settings.Module;
 
 namespace Depra.Settings.Runtime.View
 {
