@@ -7,7 +7,6 @@ using static Depra.Settings.Module;
 
 namespace Depra.Settings.Parameters.Quality.Particles
 {
-	[CreateAssetMenu(fileName = FILE_NAME, menuName = MENU_NAME, order = DEFAULT_ORDER)]
 	public sealed partial class ParticleRaycastBudgetSetting : SettingsParameter<int>
 	{
 		public override int CurrentValue => QualitySettings.particleRaycastBudget;
@@ -15,11 +14,12 @@ namespace Depra.Settings.Parameters.Quality.Particles
 		protected override void OnApply(int value) => QualitySettings.particleRaycastBudget = value;
 	}
 
+	[CreateAssetMenu(fileName = FILE_NAME, menuName = MENU_NAME, order = DEFAULT_ORDER)]
 	public sealed partial class ParticleRaycastBudgetSetting
 	{
 		private const string FILE_NAME = nameof(ParticleRaycastBudgetSetting);
-		private const string MENU_NAME = MENU_PATH + SLASH +
-		                                 nameof(Quality) + SLASH +
+
+		private const string MENU_NAME = MENU_PATH + nameof(Quality) + SLASH +
 		                                 nameof(Particles) + SLASH + FILE_NAME;
 	}
 }

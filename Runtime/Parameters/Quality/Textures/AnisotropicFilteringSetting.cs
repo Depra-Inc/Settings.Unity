@@ -20,8 +20,8 @@ namespace Depra.Settings.Parameters.Quality.Textures
 	public sealed partial class AnisotropicFilteringSetting
 	{
 		private const string FILE_NAME = nameof(AnisotropicFilteringSetting);
-		private const string MENU_NAME = MENU_PATH + SLASH +
-		                                 nameof(Quality) + SLASH +
+
+		private const string MENU_NAME = MENU_PATH + nameof(Quality) + SLASH +
 		                                 nameof(Textures) + SLASH + FILE_NAME;
 	}
 }

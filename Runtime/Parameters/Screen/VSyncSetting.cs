@@ -43,8 +43,8 @@ namespace Depra.Settings.Parameters.Screen
 	public sealed partial class VSyncSetting
 	{
 		private const string FILE_NAME = nameof(VSyncSetting);
-		private const string MENU_NAME = MENU_PATH + SLASH +
-		                                 nameof(Quality) + SLASH +
+
+		private const string MENU_NAME = MENU_PATH + nameof(Quality) + SLASH +
 		                                 nameof(Screen) + SLASH + FILE_NAME;
 	}
 }

@@ -20,8 +20,8 @@ namespace Depra.Settings.Parameters.Quality.Render
 	public sealed partial class PixelLightCountSetting
 	{
 		private const string FILE_NAME = nameof(PixelLightCountSetting);
-		private const string MENU_NAME = MENU_PATH + SLASH +
-		                                 nameof(Quality) + SLASH +
+
+		private const string MENU_NAME = MENU_PATH + nameof(Quality) + SLASH +
 		                                 nameof(Render) + SLASH + FILE_NAME;
 	}
 }

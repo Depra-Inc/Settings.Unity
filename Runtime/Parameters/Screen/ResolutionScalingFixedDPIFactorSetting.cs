@@ -21,6 +21,6 @@ namespace Depra.Settings.Parameters.Screen
 	public sealed partial class ResolutionScalingFixedDPIFactorSetting
 	{
 		private const string FILE_NAME = nameof(ResolutionScalingFixedDPIFactorSetting);
-		private const string MENU_NAME = MENU_PATH + SLASH + nameof(Screen) + SLASH + FILE_NAME;
+		private const string MENU_NAME = MENU_PATH + nameof(Screen) + SLASH + FILE_NAME;
 	}
 }

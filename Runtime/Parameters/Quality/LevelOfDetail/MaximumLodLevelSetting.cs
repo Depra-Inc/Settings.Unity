@@ -21,8 +21,8 @@ namespace Depra.Settings.Parameters.Quality.LevelOfDetail
 	public sealed partial class MaximumLodLevelSetting
 	{
 		private const string FILE_NAME = nameof(MaximumLodLevelSetting);
-		private const string MENU_NAME = MENU_PATH + SLASH +
-		                                 nameof(Quality) + SLASH +
+
+		private const string MENU_NAME = MENU_PATH + nameof(Quality) + SLASH +
 		                                 nameof(LevelOfDetail) + SLASH + FILE_NAME;
 	}
 }

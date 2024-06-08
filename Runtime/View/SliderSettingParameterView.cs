@@ -40,6 +40,6 @@ namespace Depra.Settings.View
 	public sealed partial class SliderSettingParameterView
 	{
 		private const string FILE_NAME = nameof(SliderSettingParameterView);
-		private const string MENU_NAME = MENU_PATH + SLASH + nameof(View) + SLASH + FILE_NAME;
+		private const string MENU_NAME = MENU_PATH + nameof(View) + SLASH + FILE_NAME;
 	}
 }

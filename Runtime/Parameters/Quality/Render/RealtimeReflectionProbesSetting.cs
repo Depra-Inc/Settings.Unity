@@ -18,8 +18,8 @@ namespace Depra.Settings.Parameters.Quality.Render
 	public sealed partial class RealtimeReflectionProbesSetting
 	{
 		private const string FILE_NAME = nameof(RealtimeReflectionProbesSetting);
-		private const string MENU_NAME = MENU_PATH + SLASH +
-		                                 nameof(Quality) + SLASH +
+
+		private const string MENU_NAME = MENU_PATH + nameof(Quality) + SLASH +
 		                                 nameof(Render) + SLASH + FILE_NAME;
 	}
 }

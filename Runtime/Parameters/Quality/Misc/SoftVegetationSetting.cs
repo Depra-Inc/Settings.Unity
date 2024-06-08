@@ -18,8 +18,8 @@ namespace Depra.Settings.Parameters.Quality.Misc
 	public sealed partial class SoftVegetationSetting
 	{
 		private const string FILE_NAME = nameof(SoftVegetationSetting);
-		private const string MENU_NAME = MENU_PATH + SLASH +
-		                                 nameof(Quality) + SLASH +
+
+		private const string MENU_NAME = MENU_PATH + nameof(Quality) + SLASH +
 		                                 nameof(Misc) + SLASH + FILE_NAME;
 	}
 }

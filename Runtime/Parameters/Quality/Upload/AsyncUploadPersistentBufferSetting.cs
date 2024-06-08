@@ -18,8 +18,8 @@ namespace Depra.Settings.Parameters.Quality.Upload
 	public sealed partial class AsyncUploadPersistentBufferSetting
 	{
 		private const string FILE_NAME = nameof(AsyncUploadPersistentBufferSetting);
-		private const string MENU_NAME = MENU_PATH + SLASH +
-		                                 nameof(Quality) + SLASH +
+
+		private const string MENU_NAME = MENU_PATH + nameof(Quality) + SLASH +
 		                                 nameof(Upload) + SLASH + FILE_NAME;
 	}
 }

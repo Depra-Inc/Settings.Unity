@@ -18,8 +18,8 @@ namespace Depra.Settings.Parameters.Quality.Particles
 	public sealed partial class SoftParticlesSetting
 	{
 		private const string FILE_NAME = nameof(SoftParticlesSetting);
-		private const string MENU_NAME = MENU_PATH + SLASH +
-		                                 nameof(Quality) + SLASH +
+
+		private const string MENU_NAME = MENU_PATH + nameof(Quality) + SLASH +
 		                                 nameof(Particles) + SLASH + FILE_NAME;
 	}
 }

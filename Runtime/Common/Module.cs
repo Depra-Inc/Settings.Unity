@@ -3,10 +3,12 @@
 
 namespace Depra.Settings
 {
-    internal static class Module
-    {
-        internal const string SLASH = "/";
-        internal const int DEFAULT_ORDER = 51;
-        internal const string MENU_PATH = nameof(Depra) + SLASH + nameof(Settings);
-    }
+	internal static class Module
+	{
+		internal const string SLASH = "/";
+		internal const int DEFAULT_ORDER = 51;
+
+		internal const string MENU_PATH = nameof(Depra) + SLASH +
+		                                  nameof(Settings) + SLASH;
+	}
 }

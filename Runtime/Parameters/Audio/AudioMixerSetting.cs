@@ -27,6 +27,6 @@ namespace Depra.Settings.Parameters.Audio
 	public sealed partial class AudioMixerSetting
 	{
 		private const string FILE_NAME = nameof(AudioMixerSetting);
-		private const string MENU_NAME = MENU_PATH + SLASH + nameof(Audio) + SLASH + FILE_NAME;
+		private const string MENU_NAME = MENU_PATH + nameof(Audio) + SLASH + FILE_NAME;
 	}
 }

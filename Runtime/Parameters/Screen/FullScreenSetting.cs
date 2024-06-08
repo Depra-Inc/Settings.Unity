@@ -18,6 +18,6 @@ namespace Depra.Settings.Parameters.Screen
 	public sealed partial class FullScreenSetting
 	{
 		private const string FILE_NAME = nameof(FullScreenSetting);
-		private const string MENU_NAME = MENU_PATH + SLASH + nameof(Screen) + SLASH + FILE_NAME;
+		private const string MENU_NAME = MENU_PATH + nameof(Screen) + SLASH + FILE_NAME;
 	}
 }

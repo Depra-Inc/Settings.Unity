@@ -54,6 +54,6 @@ namespace Depra.Settings.Parameters.Screen
 	public sealed partial class ResolutionSetting
 	{
 		private const string FILE_NAME = nameof(ResolutionSetting);
-		private const string MENU_NAME = MENU_PATH + SLASH + nameof(Screen) + SLASH + FILE_NAME;
+		private const string MENU_NAME = MENU_PATH + nameof(Screen) + SLASH + FILE_NAME;
 	}
 }

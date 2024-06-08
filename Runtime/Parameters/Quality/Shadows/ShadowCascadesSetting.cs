@@ -41,8 +41,8 @@ namespace Depra.Settings.Parameters.Quality.Shadows
 	public sealed partial class ShadowCascadesSetting
 	{
 		private const string FILE_NAME = nameof(ShadowCascadesSetting);
-		private const string MENU_NAME = MENU_PATH + SLASH +
-		                                 nameof(Quality) + SLASH +
+
+		private const string MENU_NAME = MENU_PATH + nameof(Quality) + SLASH +
 		                                 nameof(Shadows) + SLASH + FILE_NAME;
 	}
 }
