@@ -1,22 +1,20 @@
 // SPDX-License-Identifier: Apache-2.0
-// © 2023-2024 Nikolay Melnikov <n.melnikov@depra.org>
+// © 2023-2025 Depra <n.melnikov@depra.org>
 
 using System;
 using System.Collections.ObjectModel;
 
-namespace Depra.Settings.Parameters.Base
+namespace Depra.Settings.Parameters
 {
-    public abstract class ArraySettingParameter<TValue> : SettingsParameter<int>
+    public abstract class ArraySettingParameter<TValueChoice> : SettingsParameter<int>
     {
-        public TValue this[int index] => All[index];
-
         public override int CurrentValue => Array.IndexOf(All, Current);
 
-        public ReadOnlyCollection<TValue> AllValues => Array.AsReadOnly(All);
+        public ReadOnlyCollection<TValueChoice> AllValues => Array.AsReadOnly(All);
 
-        protected abstract TValue[] All { get; }
+        protected abstract TValueChoice[] All { get; }
 
-        protected abstract TValue Current { get; set; }
+        protected abstract TValueChoice Current { get; set; }
 
         protected override void OnApply(int index) => Current = All[index];
     }

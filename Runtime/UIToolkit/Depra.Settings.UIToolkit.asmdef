@@ -1,0 +1,24 @@
+{
+    "name": "Depra.Settings.UIToolkit",
+    "rootNamespace": "Depra.Settings.UIToolkit",
+    "references": [
+        "GUID:523ee795a2496644ca6baf6e2ede5401"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "PACKAGE_UITOOLKIT"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.modules.uielements",
+            "expression": "",
+            "define": "PACKAGE_UITOOLKIT"
+        }
+    ],
+    "noEngineReferences": false
+}

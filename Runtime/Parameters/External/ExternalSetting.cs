@@ -1,4 +1,6 @@
-﻿using Depra.Settings.Parameters.Base;
+﻿// SPDX-License-Identifier: Apache-2.0
+// © 2023-2025 Depra <n.melnikov@depra.org>
+
 using UnityEngine;
 using UnityEngine.Events;
 

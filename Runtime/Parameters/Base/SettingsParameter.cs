@@ -1,16 +1,16 @@
 // SPDX-License-Identifier: Apache-2.0
-// © 2023-2024 Nikolay Melnikov <n.melnikov@depra.org>
+// © 2023-2025 Depra <n.melnikov@depra.org>
 
 using System;
-using Depra.Settings.Runtime.Delegates;
+using Depra.Settings.Parameters.Extensions;
 using UnityEngine;
 
-namespace Depra.Settings.Parameters.Base
+namespace Depra.Settings.Parameters
 {
 	/// <summary>
 	/// A class that all settings must inherit from.
 	/// </summary>
-	public abstract partial class SettingsParameter : ScriptableObject, ISettingsParameter
+	public abstract class SettingsParameter : ScriptableObject, ISettingsParameter
 	{
 		[field: SerializeField] public string Key { get; private set; }
 		[field: SerializeField] public string DisplayName { get; private set; }
@@ -19,12 +19,17 @@ namespace Depra.Settings.Parameters.Base
 
 		private void Reset()
 		{
-			Key = string.IsNullOrEmpty(Key) ? ResetKey() : Key;
-			DisplayName = string.IsNullOrEmpty(DisplayName) ? ResetName() : DisplayName;
+			Key = string.IsNullOrEmpty(Key)
+				? DefaultName.RemoveBlackWords()
+				: Key;
+
+			DisplayName = string.IsNullOrEmpty(DisplayName)
+				? DefaultName.RemoveBlackWords().PutSpacesBeforeCapitals()
+				: DisplayName;
 		}
 
 		public abstract Type ValueType { get; }
-		
+
 		protected virtual string DefaultName => GetType().Name;
 
 		public abstract void Reload();
@@ -32,5 +37,13 @@ namespace Depra.Settings.Parameters.Base
 		public abstract object CaptureState();
 
 		public abstract void RestoreState(object state);
+
+		[ContextMenu(nameof(ResetKey))]
+		private string ResetKey() => Key = DefaultName.RemoveBlackWords();
+
+		[ContextMenu(nameof(ResetName))]
+		private string ResetName() => DisplayName = DefaultName
+			.RemoveBlackWords()
+			.PutSpacesBeforeCapitals();
 	}
 }

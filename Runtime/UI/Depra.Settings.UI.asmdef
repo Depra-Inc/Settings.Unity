@@ -1,0 +1,24 @@
+{
+    "name": "Depra.Settings.UI",
+    "rootNamespace": "Depra.Settings.UI",
+    "references": [
+        "GUID:523ee795a2496644ca6baf6e2ede5401"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "PACKAGE_UGUI"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.modules.ui",
+            "expression": "",
+            "define": "PACKAGE_UGUI"
+        }
+    ],
+    "noEngineReferences": false
+}

@@ -1,12 +1,11 @@
-﻿// Copyright © 2023 Nikolay Melnikov. All rights reserved.
-// SPDX-License-Identifier: Apache-2.0
+﻿// SPDX-License-Identifier: Apache-2.0
+// © 2023-2025 Depra <n.melnikov@depra.org>
 
 using System;
 using System.Runtime.CompilerServices;
-using Depra.Settings.Runtime.Delegates;
 using UnityEngine;
 
-namespace Depra.Settings.Parameters.Base
+namespace Depra.Settings.Parameters
 {
 	public abstract class SettingsParameter<TValue> : SettingsParameter
 	{
@@ -34,7 +33,7 @@ namespace Depra.Settings.Parameters.Base
 		public void Apply(TValue value)
 		{
 			ApplyWithoutNotify(value);
-			InvokeValueChanged(CurrentValue);
+			InvokeValueChanged(value);
 		}
 
 		public override object CaptureState() => CurrentValue;

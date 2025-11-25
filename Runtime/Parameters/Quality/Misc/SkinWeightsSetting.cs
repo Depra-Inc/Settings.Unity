@@ -1,17 +1,31 @@
 ﻿// SPDX-License-Identifier: Apache-2.0
-// © 2023-2024 Nikolay Melnikov <n.melnikov@depra.org>
+// © 2023-2025 Depra <n.melnikov@depra.org>
 
-using Depra.Settings.Parameters.Base;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static Depra.Settings.Module;
 
 namespace Depra.Settings.Parameters.Quality.Misc
 {
-	public sealed partial class SkinWeightsSetting : SettingsParameter<SkinWeights>
+	public sealed partial class SkinWeightsSetting : ArraySettingParameter<string>
 	{
-		public override SkinWeights CurrentValue => QualitySettings.skinWeights;
+		private static readonly Dictionary<int, string> CHOICES = new()
+		{
+			{ (int)SkinWeights.None, nameof(SkinWeights.None) },
+			{ (int)SkinWeights.OneBone, nameof(SkinWeights.OneBone) },
+			{ (int)SkinWeights.TwoBones, nameof(SkinWeights.TwoBones) },
+			{ (int)SkinWeights.FourBones, nameof(SkinWeights.FourBones) },
+			{ (int)SkinWeights.Unlimited, nameof(SkinWeights.Unlimited) }
+		};
 
-		protected override void OnApply(SkinWeights value) => QualitySettings.skinWeights = value;
+		protected override string[] All => CHOICES.Values.ToArray();
+
+		protected override string Current
+		{
+			get => CHOICES[(int)QualitySettings.skinWeights];
+			set => QualitySettings.skinWeights = (SkinWeights)CHOICES.First(pair => pair.Value == value).Key;
+		}
 	}
 
 	[CreateAssetMenu(fileName = FILE_NAME, menuName = MENU_NAME, order = DEFAULT_ORDER)]
