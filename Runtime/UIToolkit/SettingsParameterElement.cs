@@ -7,12 +7,12 @@ using UnityEngine.UIElements;
 
 namespace Depra.Settings.UIToolkit
 {
-	public abstract class SettingParameterElement<TValue> : VisualElement
+	public abstract class SettingsParameterElement<TValue> : VisualElement
 	{
 		[UsedImplicitly]
-		protected SettingParameterElement() { }
+		protected SettingsParameterElement() { }
 
-		protected SettingParameterElement(SettingsParameter<TValue> parameter) => Parameter = parameter;
+		protected SettingsParameterElement(SettingsParameter<TValue> parameter) => Parameter = parameter;
 
 		protected SettingsParameter<TValue> Parameter { get; private set; }
 	}

@@ -7,13 +7,19 @@ using static Depra.Settings.Module;
 
 namespace Depra.Settings.Parameters.Screen
 {
-	public sealed partial class ResolutionSetting : SettingsParameter<ResolutionSetting.SerializableResolution>
+	public sealed partial class ResolutionSetting : SettingsParameter<Vector2Int>
 	{
-		public override SerializableResolution CurrentValue => UnityEngine.Screen.currentResolution;
+		public override Vector2Int CurrentValue
+		{
+			get
+			{
+				var currentResolution = UnityEngine.Screen.currentResolution;
+				return new Vector2Int(currentResolution.width, currentResolution.height);
+			}
+		}
 
-		protected override void OnApply(SerializableResolution resolution) =>
-			UnityEngine.Screen.SetResolution(resolution.Width, resolution.Height,
-				UnityEngine.Screen.fullScreenMode, resolution.RefreshRate);
+		protected override void OnApply(Vector2Int resolution) =>
+			UnityEngine.Screen.SetResolution(resolution.x, resolution.y, UnityEngine.Screen.fullScreenMode);
 
 		[Serializable]
 		public struct SerializableResolution
@@ -28,13 +34,8 @@ namespace Depra.Settings.Parameters.Screen
 				refreshRate = self.RefreshRate
 			};
 
-			/// <inheritdoc cref="Resolution.width"/>
-			[field: SerializeField] public int Width { get; private set; }
-
-			/// <inheritdoc cref="Resolution.height"/>
-			[field: SerializeField] public int Height { get; private set; }
-
-			/// <inheritdoc cref="Resolution.refreshRate"/>
+			public int Width;
+			public int Height;
 			public int RefreshRate;
 
 			public SerializableResolution(int width, int height, int refreshRate)
@@ -44,7 +45,6 @@ namespace Depra.Settings.Parameters.Screen
 				RefreshRate = refreshRate;
 			}
 
-			/// <inheritdoc cref="Resolution.ToString"/>
 			public override string ToString() => $"{Width} x {Height} @ {RefreshRate}Hz";
 		}
 	}

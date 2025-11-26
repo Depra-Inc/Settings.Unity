@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 namespace Depra.Settings.UIToolkit
 {
-	public sealed class DropdownSettingsParameterElement : SettingParameterElement<int>
+	public sealed class DropdownSettingsParameterElement : SettingsParameterElement<int>
 	{
 		private readonly DropdownField _dropdown;
 
@@ -15,12 +15,16 @@ namespace Depra.Settings.UIToolkit
 			_dropdown = this.Q<DropdownField>();
 			if (_dropdown == null)
 			{
-				_dropdown = new DropdownField();
+				_dropdown = new DropdownField
+				{
+					label = parameter.DisplayName
+				};
+
 				_dropdown.choices.AddRange(parameter.AllValues);
+				_dropdown.labelElement.AddToClassList("setting-item-label");
 				Add(_dropdown);
 			}
 
-			_dropdown.label = parameter.DisplayName;
 			RegisterCallback<AttachToPanelEvent>(OnAttachedToPanel);
 			RegisterCallback<DetachFromPanelEvent>(OnDetachedFromPanel);
 		}

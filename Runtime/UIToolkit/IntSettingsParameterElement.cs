@@ -6,12 +6,12 @@ using UnityEngine.UIElements;
 
 namespace Depra.Settings.UIToolkit
 {
-	public sealed class FloatSettingsParameterElement : SettingsParameterElement<float>
+	public sealed class IntSettingsParameterElement : SettingsParameterElement<int>
 	{
-		private readonly Slider _slider;
-		private readonly FloatField _valueField;
+		private readonly SliderInt _slider;
+		private readonly IntegerField _valueField;
 
-		public FloatSettingsParameterElement(SettingsParameter<float> parameter) : base(parameter)
+		public IntSettingsParameterElement(SettingsParameter<int> parameter) : base(parameter)
 		{
 			var label = this.Q<Label>("label");
 			if (label == null)
@@ -25,10 +25,10 @@ namespace Depra.Settings.UIToolkit
 				Add(label);
 			}
 
-			_valueField = this.Q<FloatField>("value-field");
+			_valueField = this.Q<IntegerField>("value-field");
 			if (_valueField == null)
 			{
-				_valueField = new FloatField
+				_valueField = new IntegerField
 				{
 					value = parameter.CurrentValue
 				};
@@ -37,16 +37,15 @@ namespace Depra.Settings.UIToolkit
 				Add(_valueField);
 			}
 
-			_slider = this.Q<Slider>();
+			_slider = this.Q<SliderInt>();
 			if (_slider == null)
 			{
-				_slider = new Slider
+				_slider = new SliderInt
 				{
-					value = parameter.CurrentValue,
-					pageSize = 0.1f,
+					value = parameter.CurrentValue
 				};
 
-				if (parameter is IRangeSettingsParameter<float> rangeParameter)
+				if (parameter is IRangeSettingsParameter<int> rangeParameter)
 				{
 					_slider.lowValue = rangeParameter.MinValue;
 					_slider.highValue = rangeParameter.MaxValue;
@@ -60,11 +59,12 @@ namespace Depra.Settings.UIToolkit
 			RegisterCallback<DetachFromPanelEvent>(OnDetachedFromPanel);
 		}
 
-		public FloatSettingsParameterElement() { }
+		public IntSettingsParameterElement() { }
 
 		private void OnAttachedToPanel(AttachToPanelEvent evt)
 		{
 			UpdateSlider(Parameter.CurrentValue);
+
 			Parameter.ValueChanged += UpdateSlider;
 			_slider.RegisterValueChangedCallback(OnSliderValueChanged);
 			_valueField.RegisterValueChangedCallback(OnValueFieldChanged);
@@ -77,17 +77,13 @@ namespace Depra.Settings.UIToolkit
 			_valueField.UnregisterValueChangedCallback(OnValueFieldChanged);
 		}
 
-		private void OnValueFieldChanged(ChangeEvent<float> evt) => Parameter.Apply(evt.newValue);
-		private void OnSliderValueChanged(ChangeEvent<float> evt) => Parameter.Apply(evt.newValue);
+		private void OnValueFieldChanged(ChangeEvent<int> evt) => Parameter.Apply(evt.newValue);
+		private void OnSliderValueChanged(ChangeEvent<int> evt) => Parameter.Apply(evt.newValue);
 
-		private void UpdateSlider(float value)
+		private void UpdateSlider(int value)
 		{
 			_slider.SetValueWithoutNotify(value);
 			_valueField.SetValueWithoutNotify(value);
 		}
-
-		public new class UxmlFactory : UxmlFactory<FloatSettingsParameterElement, UxmlTraits> { }
-
-		public new class UxmlTraits : VisualElement.UxmlTraits { }
 	}
 }

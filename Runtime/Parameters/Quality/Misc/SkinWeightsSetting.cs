@@ -32,8 +32,6 @@ namespace Depra.Settings.Parameters.Quality.Misc
 	public sealed partial class SkinWeightsSetting
 	{
 		private const string FILE_NAME = nameof(SkinWeightsSetting);
-
-		private const string MENU_NAME = MENU_PATH + nameof(Quality) + SLASH +
-		                                 nameof(Misc) + SLASH + FILE_NAME;
+		private const string MENU_NAME = MENU_PATH + nameof(Quality) + SLASH + nameof(Misc) + SLASH + FILE_NAME;
 	}
 }

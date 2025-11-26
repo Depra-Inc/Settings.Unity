@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 namespace Depra.Settings.UIToolkit
 {
-	public sealed class ToggleSettingsParameterElement : SettingParameterElement<bool>
+	public sealed class ToggleSettingsParameterElement : SettingsParameterElement<bool>
 	{
 		private readonly Toggle _toggle;
 
@@ -15,11 +15,15 @@ namespace Depra.Settings.UIToolkit
 			_toggle = this.Q<Toggle>();
 			if (_toggle == null)
 			{
-				_toggle = new Toggle();
+				_toggle = new Toggle
+				{
+					label = parameter.DisplayName
+				};
+
+				_toggle.labelElement.AddToClassList("setting-item-label");
 				Add(_toggle);
 			}
 
-			_toggle.label = parameter.DisplayName;
 			RegisterCallback<AttachToPanelEvent>(OnAttachedToPanel);
 			RegisterCallback<DetachFromPanelEvent>(OnDetachedFromPanel);
 		}
@@ -40,15 +44,9 @@ namespace Depra.Settings.UIToolkit
 			_toggle.UnregisterValueChangedCallback(OnToggleValueChanged);
 		}
 
-		private void OnToggleValueChanged(ChangeEvent<bool> evt)
-		{
-			Parameter.Apply(evt.newValue);
-		}
+		private void OnToggleValueChanged(ChangeEvent<bool> evt) => Parameter.Apply(evt.newValue);
 
-		private void UpdateToggle(bool value)
-		{
-			_toggle.SetValueWithoutNotify(value);
-		}
+		private void UpdateToggle(bool value) => _toggle.SetValueWithoutNotify(value);
 
 		public new class UxmlFactory : UxmlFactory<ToggleSettingsParameterElement, UxmlTraits> { }
 
