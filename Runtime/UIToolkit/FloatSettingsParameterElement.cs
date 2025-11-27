@@ -11,49 +11,24 @@ namespace Depra.Settings.UIToolkit
 		private readonly Slider _slider;
 		private readonly FloatField _valueField;
 
-		public FloatSettingsParameterElement(SettingsParameter<float> parameter) : base(parameter)
+		public FloatSettingsParameterElement(SettingsParameter<float> parameter, VisualTreeAsset template) :
+			base(parameter)
 		{
-			var label = this.Q<Label>("label");
-			if (label == null)
-			{
-				label = new Label
-				{
-					text = parameter.DisplayName
-				};
+			template.CloneTree(this);
 
-				label.AddToClassList("setting-item-label");
-				Add(label);
-			}
+			this.Q<Label>().text = parameter.DisplayName;
 
-			_valueField = this.Q<FloatField>("value-field");
-			if (_valueField == null)
-			{
-				_valueField = new FloatField
-				{
-					value = parameter.CurrentValue
-				};
-
-				_valueField.AddToClassList("setting-item-field");
-				Add(_valueField);
-			}
+			_valueField = this.Q<FloatField>();
+			_valueField.value = parameter.CurrentValue;
 
 			_slider = this.Q<Slider>();
-			if (_slider == null)
+			_slider.value = parameter.CurrentValue;
+			_slider.pageSize = 0.1f;
+
+			if (parameter is IRangeSettingsParameter<float> rangeParameter)
 			{
-				_slider = new Slider
-				{
-					value = parameter.CurrentValue,
-					pageSize = 0.1f,
-				};
-
-				if (parameter is IRangeSettingsParameter<float> rangeParameter)
-				{
-					_slider.lowValue = rangeParameter.MinValue;
-					_slider.highValue = rangeParameter.MaxValue;
-				}
-
-				_slider.AddToClassList("setting-item-slider");
-				Add(_slider);
+				_slider.lowValue = rangeParameter.MinValue;
+				_slider.highValue = rangeParameter.MaxValue;
 			}
 
 			RegisterCallback<AttachToPanelEvent>(OnAttachedToPanel);

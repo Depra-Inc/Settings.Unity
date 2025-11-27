@@ -11,48 +11,21 @@ namespace Depra.Settings.UIToolkit
 		private readonly SliderInt _slider;
 		private readonly IntegerField _valueField;
 
-		public IntSettingsParameterElement(SettingsParameter<int> parameter) : base(parameter)
+		public IntSettingsParameterElement(SettingsParameter<int> parameter, VisualTreeAsset template) : base(parameter)
 		{
-			var label = this.Q<Label>("label");
-			if (label == null)
-			{
-				label = new Label
-				{
-					text = parameter.DisplayName
-				};
+			template.CloneTree(this);
 
-				label.AddToClassList("setting-item-label");
-				Add(label);
-			}
+			this.Q<Label>().text = parameter.DisplayName;
 
-			_valueField = this.Q<IntegerField>("value-field");
-			if (_valueField == null)
-			{
-				_valueField = new IntegerField
-				{
-					value = parameter.CurrentValue
-				};
-
-				_valueField.AddToClassList("setting-item-field");
-				Add(_valueField);
-			}
+			_valueField = this.Q<IntegerField>();
+			_valueField.value = parameter.CurrentValue;
 
 			_slider = this.Q<SliderInt>();
-			if (_slider == null)
+			_slider.value = parameter.CurrentValue;
+			if (parameter is IRangeSettingsParameter<int> rangeParameter)
 			{
-				_slider = new SliderInt
-				{
-					value = parameter.CurrentValue
-				};
-
-				if (parameter is IRangeSettingsParameter<int> rangeParameter)
-				{
-					_slider.lowValue = rangeParameter.MinValue;
-					_slider.highValue = rangeParameter.MaxValue;
-				}
-
-				_slider.AddToClassList("setting-item-slider");
-				Add(_slider);
+				_slider.lowValue = rangeParameter.MinValue;
+				_slider.highValue = rangeParameter.MaxValue;
 			}
 
 			RegisterCallback<AttachToPanelEvent>(OnAttachedToPanel);

@@ -10,19 +10,13 @@ namespace Depra.Settings.UIToolkit
 	{
 		private readonly Toggle _toggle;
 
-		public ToggleSettingsParameterElement(SettingsParameter<bool> parameter) : base(parameter)
+		public ToggleSettingsParameterElement(SettingsParameter<bool> parameter, VisualTreeAsset template) :
+			base(parameter)
 		{
-			_toggle = this.Q<Toggle>();
-			if (_toggle == null)
-			{
-				_toggle = new Toggle
-				{
-					label = parameter.DisplayName
-				};
+			template.CloneTree(this);
 
-				_toggle.labelElement.AddToClassList("setting-item-label");
-				Add(_toggle);
-			}
+			_toggle = this.Q<Toggle>();
+			_toggle.label = parameter.DisplayName;
 
 			RegisterCallback<AttachToPanelEvent>(OnAttachedToPanel);
 			RegisterCallback<DetachFromPanelEvent>(OnDetachedFromPanel);

@@ -10,20 +10,13 @@ namespace Depra.Settings.UIToolkit
 	{
 		private readonly DropdownField _dropdown;
 
-		public DropdownSettingsParameterElement(ArraySettingParameter<string> parameter) : base(parameter)
+		public DropdownSettingsParameterElement(ArraySettingParameter<string> parameter, VisualTreeAsset template) :
+			base(parameter)
 		{
+			template.CloneTree(this);
 			_dropdown = this.Q<DropdownField>();
-			if (_dropdown == null)
-			{
-				_dropdown = new DropdownField
-				{
-					label = parameter.DisplayName
-				};
-
-				_dropdown.choices.AddRange(parameter.AllValues);
-				_dropdown.labelElement.AddToClassList("setting-item-label");
-				Add(_dropdown);
-			}
+			_dropdown.label = parameter.DisplayName;
+			_dropdown.choices.AddRange(parameter.AllValues);
 
 			RegisterCallback<AttachToPanelEvent>(OnAttachedToPanel);
 			RegisterCallback<DetachFromPanelEvent>(OnDetachedFromPanel);
