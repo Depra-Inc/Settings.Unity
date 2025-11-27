@@ -1,32 +1,28 @@
 // SPDX-License-Identifier: Apache-2.0
 // © 2023-2025 Depra <n.melnikov@depra.org>
 
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using static Depra.Settings.Module;
 
 namespace Depra.Settings.Parameters.Screen
 {
-	[CreateAssetMenu(fileName = FILE_NAME, menuName = MENU_NAME, order = Module.DEFAULT_ORDER)]
-	public sealed class FullScreenModeSetting : ArraySettingParameter<string>
+	[CreateAssetMenu(fileName = FILE_NAME, menuName = MENU_NAME, order = DEFAULT_ORDER)]
+	public sealed class FullScreenModeSetting : OptionSettingsParameter<FullScreenMode>
 	{
 		private const string FILE_NAME = nameof(FullScreenModeSetting);
-		private const string MENU_NAME = Module.MENU_PATH + nameof(Screen) + Module.SLASH + FILE_NAME;
+		private const string MENU_NAME = MENU_PATH + nameof(Screen) + "/" + FILE_NAME;
 
-		private static readonly Dictionary<int, string> CHOICES = new()
+		public override FullScreenMode CurrentValue => UnityEngine.Screen.fullScreenMode;
+
+		protected override FullScreenMode[] Choices { get; } =
 		{
-			{ (int)FullScreenMode.ExclusiveFullScreen, nameof(FullScreenMode.ExclusiveFullScreen) },
-			{ (int)FullScreenMode.FullScreenWindow, nameof(FullScreenMode.FullScreenWindow) },
-			{ (int)FullScreenMode.MaximizedWindow, nameof(FullScreenMode.MaximizedWindow) },
-			{ (int)FullScreenMode.Windowed, nameof(FullScreenMode.Windowed) }
+			FullScreenMode.ExclusiveFullScreen,
+			FullScreenMode.FullScreenWindow,
+			FullScreenMode.MaximizedWindow,
+			FullScreenMode.Windowed
 		};
 
-		protected override string[] All => CHOICES.Values.ToArray();
-
-		protected override string Current
-		{
-			get => CHOICES[(int)UnityEngine.Screen.fullScreenMode];
-			set => UnityEngine.Screen.fullScreenMode = (FullScreenMode)CHOICES.First(pair => pair.Value == value).Key;
-		}
+		protected override void OnApply(FullScreenMode value) => UnityEngine.Screen.fullScreenMode = value;
+		protected override string ToDisplayName(FullScreenMode value) => value.ToString();
 	}
 }

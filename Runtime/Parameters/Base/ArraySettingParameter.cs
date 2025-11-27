@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace Depra.Settings.Parameters
 {
-    public abstract class ArraySettingParameter<TValueChoice> : SettingsParameter<int>
+	public abstract class ArraySettingParameter<TValueChoice> : SettingsParameter<int>
     {
         public override int CurrentValue => Array.IndexOf(All, Current);
 

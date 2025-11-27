@@ -1,0 +1,11 @@
+// SPDX-License-Identifier: Apache-2.0
+// © 2023-2025 Depra <n.melnikov@depra.org>
+
+namespace Depra.Settings.Parameters
+{
+	public interface IRangeSettingsParameter<out TValue>
+	{
+		TValue MinValue { get; }
+		TValue MaxValue { get; }
+	}
+}

@@ -5,12 +5,6 @@ using System;
 
 namespace Depra.Settings.Parameters
 {
-	public interface IRangeSettingsParameter<out TValue>
-	{
-		TValue MinValue { get; }
-		TValue MaxValue { get; }
-	}
-	
 	public interface ISettingsParameter
 	{
 		event SettingValueChanged ValueChangedRaw;
