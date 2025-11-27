@@ -6,10 +6,13 @@ using System.Linq;
 using UnityEngine;
 using static Depra.Settings.Module;
 
-namespace Depra.Settings.Parameters.Quality.Misc
+namespace Depra.Settings.Parameters.Quality
 {
-	public sealed partial class SkinWeightsSetting : ArraySettingParameter<string>
+	[CreateAssetMenu(fileName = FILE_NAME, menuName = MENU_NAME, order = DEFAULT_ORDER)]
+	public sealed class SkinWeightsSetting : ArraySettingParameter<string>
 	{
+		private const string FILE_NAME = nameof(SkinWeightsSetting);
+		private const string MENU_NAME = MENU_PATH + nameof(Quality) + SLASH + nameof(Misc) + SLASH + FILE_NAME;
 		private static readonly Dictionary<int, string> CHOICES = new()
 		{
 			{ (int)SkinWeights.None, nameof(SkinWeights.None) },
@@ -26,12 +29,5 @@ namespace Depra.Settings.Parameters.Quality.Misc
 			get => CHOICES[(int)QualitySettings.skinWeights];
 			set => QualitySettings.skinWeights = (SkinWeights)CHOICES.First(pair => pair.Value == value).Key;
 		}
-	}
-
-	[CreateAssetMenu(fileName = FILE_NAME, menuName = MENU_NAME, order = DEFAULT_ORDER)]
-	public sealed partial class SkinWeightsSetting
-	{
-		private const string FILE_NAME = nameof(SkinWeightsSetting);
-		private const string MENU_NAME = MENU_PATH + nameof(Quality) + SLASH + nameof(Misc) + SLASH + FILE_NAME;
 	}
 }
