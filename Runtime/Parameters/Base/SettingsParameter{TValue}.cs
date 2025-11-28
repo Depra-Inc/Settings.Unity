@@ -15,10 +15,9 @@ namespace Depra.Settings.Parameters
 		public override event SettingValueChanged ValueChangedRaw;
 
 		public abstract TValue CurrentValue { get; }
+		public virtual TValue DefaultValue => _defaultValue;
 		public override Type ValueType => typeof(TValue);
-		
-		public TValue DefaultValue => _defaultValue;
-		
+
 		public override void Reload()
 		{
 			if (CurrentValue.Equals(_defaultValue))
