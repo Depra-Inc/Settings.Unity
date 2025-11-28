@@ -15,8 +15,9 @@ namespace Depra.Settings.Parameters.Screen
 			{
 #if UNITY_EDITOR
 				return EditorScreenAdapter.fullScreen;
-#endif
+#else
 				return UnityEngine.Screen.fullScreen;
+#endif
 			}
 		}
 

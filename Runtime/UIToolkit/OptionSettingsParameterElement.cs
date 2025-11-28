@@ -51,14 +51,15 @@ namespace Depra.Settings.UIToolkit
 			}
 		}
 
-		private void UpdateDropdown(object obj)
+		private void UpdateDropdown(int index)
 		{
-			var value = (int)obj;
-			if (value >= 0 && value < _dropdown.choices.Count)
+			if (index >= 0 && index < _dropdown.choices.Count)
 			{
-				_dropdown.SetValueWithoutNotify(_dropdown.choices[value]);
+				_dropdown.SetValueWithoutNotify(_dropdown.choices[index]);
 			}
 		}
+
+		private void UpdateDropdown(object obj) => UpdateDropdown(_parameter.CurrentIndex);
 
 		public new class UxmlFactory : UxmlFactory<DropdownSettingsParameterElement, UxmlTraits> { }
 

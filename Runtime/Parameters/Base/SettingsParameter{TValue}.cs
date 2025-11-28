@@ -67,7 +67,7 @@ namespace Depra.Settings.Parameters
 		private void InvokeValueChanged(TValue value)
 		{
 			ValueChanged?.Invoke(value);
-			ValueChangedRaw?.Invoke(CurrentValue);
+			ValueChangedRaw?.Invoke(value);
 		}
 	}
 }
