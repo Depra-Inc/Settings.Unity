@@ -1,11 +1,11 @@
 ﻿// SPDX-License-Identifier: Apache-2.0
-// © 2023-2024 Nikolay Melnikov <n.melnikov@depra.org>
+// © 2023-2025 Depra <n.melnikov@depra.org>
 
 using UnityEngine;
 using UnityEngine.UI;
 using static Depra.Settings.Module;
 
-namespace Depra.Settings.View
+namespace Depra.Settings.UI
 {
 	public sealed partial class VolumeSliderSettingParameterView : SettingParameterView<float>
 	{
@@ -47,6 +47,6 @@ namespace Depra.Settings.View
 	public sealed partial class VolumeSliderSettingParameterView
 	{
 		private const string FILE_NAME = nameof(VolumeSliderSettingParameterView);
-		private const string MENU_NAME = MENU_PATH + nameof(View) + SLASH + FILE_NAME;
+		private const string MENU_NAME = MENU_PATH + nameof(UI) + SLASH + FILE_NAME;
 	}
 }

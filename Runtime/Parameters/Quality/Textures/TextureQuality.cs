@@ -1,4 +1,7 @@
-﻿namespace Depra.Settings.Parameters.Quality.Textures
+﻿// SPDX-License-Identifier: Apache-2.0
+// © 2023-2025 Depra <n.melnikov@depra.org>
+
+namespace Depra.Settings.Parameters.Quality.Textures
 {
 	/// <summary>
 	/// The texture quality.

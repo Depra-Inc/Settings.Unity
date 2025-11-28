@@ -1,7 +1,6 @@
 ﻿// SPDX-License-Identifier: Apache-2.0
-// © 2023-2024 Nikolay Melnikov <n.melnikov@depra.org>
+// © 2023-2025 Depra <n.melnikov@depra.org>
 #if UNITY_2022_1_OR_NEWER
-using Depra.Settings.Parameters.Base;
 using UnityEngine;
 using static Depra.Settings.Module;
 

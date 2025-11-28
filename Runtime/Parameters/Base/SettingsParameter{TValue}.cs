@@ -1,12 +1,11 @@
-﻿// Copyright © 2023 Nikolay Melnikov. All rights reserved.
-// SPDX-License-Identifier: Apache-2.0
+﻿// SPDX-License-Identifier: Apache-2.0
+// © 2023-2025 Depra <n.melnikov@depra.org>
 
 using System;
 using System.Runtime.CompilerServices;
-using Depra.Settings.Runtime.Delegates;
 using UnityEngine;
 
-namespace Depra.Settings.Parameters.Base
+namespace Depra.Settings.Parameters
 {
 	public abstract class SettingsParameter<TValue> : SettingsParameter
 	{
@@ -16,10 +15,9 @@ namespace Depra.Settings.Parameters.Base
 		public override event SettingValueChanged ValueChangedRaw;
 
 		public abstract TValue CurrentValue { get; }
+		public virtual TValue DefaultValue => _defaultValue;
 		public override Type ValueType => typeof(TValue);
-		
-		public TValue DefaultValue => _defaultValue;
-		
+
 		public override void Reload()
 		{
 			if (CurrentValue.Equals(_defaultValue))
@@ -34,7 +32,7 @@ namespace Depra.Settings.Parameters.Base
 		public void Apply(TValue value)
 		{
 			ApplyWithoutNotify(value);
-			InvokeValueChanged(CurrentValue);
+			InvokeValueChanged(value);
 		}
 
 		public override object CaptureState() => CurrentValue;
@@ -68,7 +66,7 @@ namespace Depra.Settings.Parameters.Base
 		private void InvokeValueChanged(TValue value)
 		{
 			ValueChanged?.Invoke(value);
-			ValueChangedRaw?.Invoke(CurrentValue);
+			ValueChangedRaw?.Invoke(value);
 		}
 	}
 }
