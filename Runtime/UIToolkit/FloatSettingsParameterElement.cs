@@ -2,6 +2,7 @@
 // © 2023-2025 Depra <n.melnikov@depra.org>
 
 using Depra.Settings.Parameters;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Depra.Settings.UIToolkit
@@ -52,7 +53,9 @@ namespace Depra.Settings.UIToolkit
 			_valueField.UnregisterValueChangedCallback(OnValueFieldChanged);
 		}
 
-		private void OnValueFieldChanged(ChangeEvent<float> evt) => Parameter.Apply(evt.newValue);
+		private void OnValueFieldChanged(ChangeEvent<float> evt) =>
+			Parameter.Apply(Mathf.Clamp(evt.newValue, _slider.lowValue, _slider.highValue));
+
 		private void OnSliderValueChanged(ChangeEvent<float> evt) => Parameter.Apply(evt.newValue);
 
 		private void UpdateSlider(float value)

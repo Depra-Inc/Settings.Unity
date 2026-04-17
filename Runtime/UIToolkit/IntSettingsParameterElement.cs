@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 // © 2023-2025 Depra <n.melnikov@depra.org>
 
+using System;
 using Depra.Settings.Parameters;
 using UnityEngine.UIElements;
 
@@ -50,7 +51,9 @@ namespace Depra.Settings.UIToolkit
 			_valueField.UnregisterValueChangedCallback(OnValueFieldChanged);
 		}
 
-		private void OnValueFieldChanged(ChangeEvent<int> evt) => Parameter.Apply(evt.newValue);
+		private void OnValueFieldChanged(ChangeEvent<int> evt) =>
+			Parameter.Apply(Math.Clamp(evt.newValue, _slider.lowValue, _slider.highValue));
+
 		private void OnSliderValueChanged(ChangeEvent<int> evt) => Parameter.Apply(evt.newValue);
 
 		private void UpdateSlider(int value)
