@@ -2,6 +2,7 @@
 // © 2023-2025 Depra <n.melnikov@depra.org>
 
 using System;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
@@ -37,14 +38,15 @@ namespace Depra.Settings.Parameters
 
 		public override object CaptureState() => CurrentValue;
 
-		public override void RestoreState(object state) => 
+		public override void RestoreState(object state) =>
 			ApplyWithoutNotify(Parse(state));
 
 		private TValue Parse(object state) => state switch
 		{
 			null => DefaultValue,
 			TValue castedState => castedState,
-			_ => (TValue) Convert.ChangeType(state, typeof(TValue))
+			string text when typeof(TValue).IsEnum => (TValue)Enum.Parse(typeof(TValue), text),
+			_ => (TValue)Convert.ChangeType(state, typeof(TValue), CultureInfo.InvariantCulture)
 		};
 
 		protected abstract void OnApply(TValue value);

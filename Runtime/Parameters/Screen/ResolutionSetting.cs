@@ -22,7 +22,7 @@ namespace Depra.Settings.Parameters.Screen
 
 		protected override void OnApply(Resolution value) =>
 			UnityEngine.Screen.SetResolution(value.Width, value.Height,
-				UnityEngine.Screen.fullScreenMode, value.RefreshRateRatio);
+				UnityEngine.Screen.fullScreenMode, value.GetRefreshRateRatio());
 
 		protected override string ToDisplayName(Resolution value) => value.ToString();
 
@@ -43,7 +43,7 @@ namespace Depra.Settings.Parameters.Screen
 				RefreshRate = (int)Math.Round(refreshRate.value);
 			}
 
-			public RefreshRate RefreshRateRatio => new()
+			public RefreshRate GetRefreshRateRatio() => new()
 			{
 				numerator = (uint)RefreshRate,
 				denominator = 1U
