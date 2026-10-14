@@ -16,6 +16,16 @@ namespace Depra.Settings.Parameters.Screen
 		public override Resolution CurrentValue => UnityEngine.Screen.currentResolution;
 		public override Resolution DefaultValue => UnityEngine.Screen.currentResolution;
 
+		public override object CaptureState() => CurrentValue;
+
+		public override void RestoreState(object state)
+		{ 
+			if (state is Resolution resolution)
+			{
+				OnApply(resolution);
+			}
+		}
+
 		protected override Resolution[] Choices => Array.ConvertAll(
 			UnityEngine.Screen.resolutions,
 			resolution => (Resolution)resolution);
