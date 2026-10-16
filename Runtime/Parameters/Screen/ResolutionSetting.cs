@@ -16,13 +16,23 @@ namespace Depra.Settings.Parameters.Screen
 		public override Resolution CurrentValue => UnityEngine.Screen.currentResolution;
 		public override Resolution DefaultValue => UnityEngine.Screen.currentResolution;
 
+		public override object CaptureState() => CurrentValue;
+
+		public override void RestoreState(object state)
+		{ 
+			if (state is Resolution resolution)
+			{
+				OnApply(resolution);
+			}
+		}
+
 		protected override Resolution[] Choices => Array.ConvertAll(
 			UnityEngine.Screen.resolutions,
 			resolution => (Resolution)resolution);
 
 		protected override void OnApply(Resolution value) =>
 			UnityEngine.Screen.SetResolution(value.Width, value.Height,
-				UnityEngine.Screen.fullScreenMode, value.RefreshRateRatio);
+				UnityEngine.Screen.fullScreenMode, value.GetRefreshRateRatio());
 
 		protected override string ToDisplayName(Resolution value) => value.ToString();
 
@@ -43,7 +53,7 @@ namespace Depra.Settings.Parameters.Screen
 				RefreshRate = (int)Math.Round(refreshRate.value);
 			}
 
-			public RefreshRate RefreshRateRatio => new()
+			public RefreshRate GetRefreshRateRatio() => new()
 			{
 				numerator = (uint)RefreshRate,
 				denominator = 1U
