@@ -18,6 +18,9 @@ namespace Depra.Settings.Parameters
 
 		protected abstract TValueChoice[] Choices { get; }
 
+		public override object CaptureState() => CurrentIndex;
+		public override void RestoreState(object state) => ApplyIndex(Convert.ToInt32(state));
+
 		public void ApplyIndex(int index) => Apply(Choices[index]);
 		public string GetDisplayName(int index) => ToDisplayName(Choices[index]);
 
